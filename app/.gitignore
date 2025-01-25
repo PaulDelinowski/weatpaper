@@ -1,0 +1,10 @@
+/build
+
+secrets.properties
+# Ignoruj folder build
+/build/
+**/build/
+
+# Ignoruj pliki .aab, .apk, itp.
+*.aab
+*.apk

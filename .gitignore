@@ -1,0 +1,20 @@
+# Pliki i foldery generowane przez Android Studio
+*.iml
+.gradle
+/local.properties
+/secrets.properties
+/.idea/
+
+# Pliki build
+/build/
+**/build/
+.cxx
+.externalNativeBuild
+
+# Artefakty wydania
+*.apk
+*.aab
+
+# Pliki systemowe i inne
+.DS_Store
+/captures

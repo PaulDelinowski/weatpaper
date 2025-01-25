@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.paul.weatpaper.ui.MainActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <ImageView
+            android:id="@+id/backgroundImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/background" />
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:padding="25dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="540dp"
+            android:background="@drawable/rounded_corners"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:layout_margin="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_app"
+                android:layout_gravity="center"
+                android:textSize="36sp"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/josefinsans_bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/welcome_text"
+                android:layout_gravity="center"
+                android:textSize="24sp"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/josefinsans_regular" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/welcome_text_2"
+                android:layout_gravity="center"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:padding="25dp"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/josefinsans_regular" />
+
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:background="@drawable/button_background"
+                android:id="@+id/start_button"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:text="@string/start_button_text"
+                android:textColor="@color/button_text_color"
+                android:fontFamily="@font/josefinsans_bold"
+                android:textSize="12sp"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/stop_button"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_info_color"
+                android:fontFamily="@font/josefinsans_bold"
+                android:text="@string/stop_button_text"
+                android:textColor="@color/button_text_color"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:background="@drawable/button_info_color"
+                android:id="@+id/howitwork_button"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:text="@string/howwork_button_text"
+                android:textColor="@color/button_text_color"
+                android:fontFamily="@font/josefinsans_bold"
+                android:textSize="12sp"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/info_button"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_info_color"
+                android:fontFamily="@font/josefinsans_bold"
+                android:text="@string/info_button_text"
+                android:textColor="@color/button_text_color"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_website"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_info_color"
+                android:fontFamily="@font/josefinsans_bold"
+                android:text="@string/add_image"
+                android:textColor="@color/button_text_color"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/contact_text"
+                android:layout_gravity="center"
+                android:textSize="10sp"
+                android:textAlignment="center"
+                android:padding="25dp"
+                android:textColor="#FFFFFF"
+                android:lineSpacingExtra="8dp"
+                android:fontFamily="@font/josefinsans_regular" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Weatpaper</string>
+    <string name="title_app">Weatpaper</string>
+    <string name="welcome_text">Your smartphone is alive!</string>
+    <string name="welcome_text_2">Dynamically changing wallpaper depending on the weather, season, time of day and location.</string>
+    <string name="start_button_text">Start!</string>
+    <string name="howwork_button_text">How it\'s working?</string>
+    <string name="how_it_works_title">How it\'s working?</string>
+    <string name="how_it_works_text">The application will automatically change the wallpaper on your smartphone depending on the weather, time of day and season.</string>
+    <string name="how_it_works_text_2">Now you know what the weather is like outside right now!</string>
+    <string name="back_button_text">Back!</string>
+    <string name="info_button_text">Important!</string>
+    <string name="contact_text">Developed by Paweł Delinowski\npaweldelinowski@outlook.com\nwww.weatpaper.com</string>
+    <string name="info_text_1">The application will change the wallpaper every hour depending on the time of day, weather, and your location.</string>
+    <string name="info_text_2">To make sure everything works according to plan, remember to:</string>
+    <string name="info_text_3">Internet Connection\nLocation enabled\nrunning application</string>
+    <string name="info_text_4">After clicking the start button, you can minimize the application, but remember not to close it!</string>
+    <string name="add_image">Website!</string>
+    <string name="stop_button_text">Stop App!</string>
+
+
+</resources>

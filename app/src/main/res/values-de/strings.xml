@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Weatpaper</string>
+    <string name="title_app">Weatpaper</string>
+    <string name="welcome_text">Dein Smartphone lebt!</string>
+    <string name="welcome_text_2">Dynamisch wechselndes Hintergrundbild je nach Wetter, Jahreszeit, Tageszeit und Standort.</string>
+    <string name="start_button_text">Start!</string>
+    <string name="howwork_button_text">Wie funktioniert es?</string>
+    <string name="how_it_works_title">Wie funktioniert es?</string>
+    <string name="how_it_works_text">Die Anwendung ändert automatisch das Hintergrundbild auf Ihrem Smartphone je nach Wetter, Tages- und Jahreszeit.</string>
+    <string name="how_it_works_text_2">Jetzt wissen Sie, wie das Wetter gerade draußen ist!</string>
+    <string name="back_button_text">Zurückkehren</string>
+    <string name="contact_text">Developed by Paweł Delinowski\npaweldelinowski@outlook.com\nwww.weatpaper.com</string>
+    <string name="email_address">paweldelinowski@outlook.com</string>
+    <string name="info_text_1">Die Anwendung ändert das Hintergrundbild stündlich, abhängig von der Tageszeit, dem Wetter und Ihrem Standort.</string>
+    <string name="info_text_2">Um sicherzustellen, dass alles nach Plan funktioniert, denken Sie daran:</string>
+    <string name="info_text_3">Internet Zugang\nStandort aktiviert\nlaufende Anwendung</string>
+    <string name="info_text_4">Nachdem Sie auf die Schaltfläche „Start“ geklickt haben, können Sie die Anwendung minimieren. Denken Sie jedoch daran, sie nicht zu schließen!</string>
+    <string name="info_button_text">Wichtige Info</string>
+    <string name="add_image">Website!</string>
+    <string name="stop_button_text">Stop App!</string>
+
+
+</resources>
