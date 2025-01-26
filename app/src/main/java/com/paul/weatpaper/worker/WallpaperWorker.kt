@@ -27,11 +27,15 @@ class WallpaperWorker(context: Context, workerParams: WorkerParameters) :
     override fun doWork(): Result {
         Log.d("WallpaperWorker", "OpenWeather API Key: $apiKey")
 
+        if (apiKey.isEmpty()) {
+            Log.e("WallpaperWorker", "API Key is missing")
+            return Result.failure()
+        }
+
         val scope = CoroutineScope(Dispatchers.IO)
         scope.launch {
-            if (!isWorkEligible()) {
-                return@launch
-            }
+            if (!isWorkEligible()) return@launch
+
             locationProvider.getLastLocation(
                 onSuccess = { location ->
                     if (location != null) {
@@ -54,7 +58,7 @@ class WallpaperWorker(context: Context, workerParams: WorkerParameters) :
         val lastExecutionTime = sharedPreferences.getLong("lastExecutionTime", 0L)
         val currentTime = System.currentTimeMillis()
         if (currentTime - lastExecutionTime < 60 * 60 * 1000) {
-            Log.d("WallpaperWorker", "Work called too soon, continuing work")
+            Log.d("WallpaperWorker", "Work called too soon, skipping")
             return false
         }
         return true
@@ -69,8 +73,12 @@ class WallpaperWorker(context: Context, workerParams: WorkerParameters) :
                     response: retrofit2.Response<JsonObject>
                 ) {
                     if (response.isSuccessful) {
-                        val weatherCondition = response.body()?.getAsJsonArray("weather")
+                        val responseBody = response.body()
+                        Log.d("WallpaperWorker", "API Response: $responseBody")
+
+                        val weatherCondition = responseBody?.getAsJsonArray("weather")
                             ?.get(0)?.asJsonObject?.get("main")?.asString
+
                         if (weatherCondition != null) {
                             wallpaperChanger.changeWallpaper(weatherCondition)
                         } else {

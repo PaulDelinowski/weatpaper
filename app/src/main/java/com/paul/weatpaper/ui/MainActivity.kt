@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun startWallpaperServiceWithChecks() {
         if (isInternetAvailable()) {
-            checkLocationPermissions(true)
+            checkLocationPermissions(true) // To wywoła startWallpaperService() w razie potrzeby
         } else {
             Toast.makeText(this, "No internet connection available", Toast.LENGTH_LONG).show()
         }
