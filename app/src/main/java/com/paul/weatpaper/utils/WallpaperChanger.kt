@@ -9,19 +9,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.IOException
-import java.util.Calendar
 import java.util.Locale
 
 class WallpaperChanger(private val context: Context) {
 
-    fun changeWallpaper(weatherCondition: String) {
-        val wallpaperManager = WallpaperManager.getInstance(context)
-        val hourOfDay = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+    fun changeWallpaper(weatherCondition: String, sunrise: Long, sunset: Long) {
+        val currentTime = System.currentTimeMillis() / 1000 // Aktualny czas w sekundach
 
-        val partOfDay = when (hourOfDay) {
-            in 5..8 -> "sunrise"
-            in 9..16 -> "day"
-            in 17..20 -> "sunset"
+        val partOfDay = when (currentTime) {
+            in sunrise until sunset -> "day"
+            in (sunset + 1)..(sunset + 3 * 60 * 60) -> "sunset" // 3 godziny po zachodzie
+            in (sunrise - 3 * 60 * 60) until sunrise -> "sunrise" // 3 godziny przed wschodem
             else -> "night"
         }
 
@@ -47,15 +45,13 @@ class WallpaperChanger(private val context: Context) {
                 if (wallpapers.isNotEmpty()) {
                     val randomWallpaper = wallpapers.random()
                     assetManager.open("$folderPath/$randomWallpaper").use { inputStream ->
-                        wallpaperManager.setStream(inputStream)
+                        WallpaperManager.getInstance(context).setStream(inputStream)
                     }
                     withContext(Dispatchers.Main) {
-                        Log.d("WallpaperChanger", "Wallpaper changed to $randomWallpaper")
-                        Toast.makeText(context, "Wallpaper changed successfully", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Wallpaper changed to $randomWallpaper", Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     withContext(Dispatchers.Main) {
-                        Log.d("WallpaperChanger", "No wallpapers found in folder: $folderPath")
                         Toast.makeText(context, "No wallpapers found for $folderPath", Toast.LENGTH_SHORT).show()
                     }
                 }

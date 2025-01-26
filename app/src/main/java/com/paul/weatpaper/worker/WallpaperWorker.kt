@@ -12,7 +12,6 @@ import com.paul.weatpaper.utils.WallpaperChanger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import com.paul.weatpaper.BuildConfig
 
 class WallpaperWorker(context: Context, workerParams: WorkerParameters) :
@@ -20,22 +19,13 @@ class WallpaperWorker(context: Context, workerParams: WorkerParameters) :
 
     private val locationProvider = LocationProvider(context)
     private val wallpaperChanger = WallpaperChanger(context)
-    private val sharedPreferences =
-        context.getSharedPreferences("weatpaper_prefs", Context.MODE_PRIVATE)
     private val apiKey = BuildConfig.OPENWEATHER_API_KEY
 
     override fun doWork(): Result {
         Log.d("WallpaperWorker", "OpenWeather API Key: $apiKey")
 
-        if (apiKey.isEmpty()) {
-            Log.e("WallpaperWorker", "API Key is missing")
-            return Result.failure()
-        }
-
         val scope = CoroutineScope(Dispatchers.IO)
         scope.launch {
-            if (!isWorkEligible()) return@launch
-
             locationProvider.getLastLocation(
                 onSuccess = { location ->
                     if (location != null) {
@@ -54,16 +44,6 @@ class WallpaperWorker(context: Context, workerParams: WorkerParameters) :
         return Result.success()
     }
 
-    private suspend fun isWorkEligible(): Boolean {
-        val lastExecutionTime = sharedPreferences.getLong("lastExecutionTime", 0L)
-        val currentTime = System.currentTimeMillis()
-        if (currentTime - lastExecutionTime < 60 * 60 * 1000) {
-            Log.d("WallpaperWorker", "Work called too soon, skipping")
-            return false
-        }
-        return true
-    }
-
     private fun fetchWeatherAndChangeWallpaper(latitude: Double, longitude: Double) {
         val weatherApi = ApiClient.getWeatherApi()
         weatherApi.getWeather(latitude, longitude, apiKey)
@@ -79,8 +59,12 @@ class WallpaperWorker(context: Context, workerParams: WorkerParameters) :
                         val weatherCondition = responseBody?.getAsJsonArray("weather")
                             ?.get(0)?.asJsonObject?.get("main")?.asString
 
+                        val sysObject = responseBody?.getAsJsonObject("sys")
+                        val sunrise = sysObject?.get("sunrise")?.asLong ?: 0L
+                        val sunset = sysObject?.get("sunset")?.asLong ?: 0L
+
                         if (weatherCondition != null) {
-                            wallpaperChanger.changeWallpaper(weatherCondition)
+                            wallpaperChanger.changeWallpaper(weatherCondition, sunrise, sunset)
                         } else {
                             Log.e("WallpaperWorker", "Weather condition not found in response")
                             showToast("Error: Unable to fetch weather condition")
@@ -94,7 +78,6 @@ class WallpaperWorker(context: Context, workerParams: WorkerParameters) :
                 override fun onFailure(call: retrofit2.Call<JsonObject>, t: Throwable) {
                     Log.e("WallpaperWorker", "Network Error: ${t.message}")
                     showToast("Error: Network issue while fetching weather data")
-                    t.printStackTrace()
                 }
             })
     }
