@@ -1,7 +1,15 @@
 plugins {
+    // Bez podawania wersji – wersje wczytane z settings.gradle (pluginManagement)
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+
+    // Zamiast "kotlin-kapt" najlepiej użyć oficjalnego ID:
+    // id("org.jetbrains.kotlin.kapt")
+    // Jeśli jednak "kotlin-kapt" działa Ci poprawnie – możesz pozostać przy nim,
+    // ale pamiętaj o prawidłowej definicji w settings.gradle.
     id("kotlin-kapt")
+
+    // Secrets Gradle Plugin
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
@@ -17,7 +25,7 @@ android {
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        // Klucz API
+        // Klucz API – ładowany z gradle property
         buildConfigField(
             "String",
             "OPENWEATHER_API_KEY",
@@ -39,6 +47,7 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+
         java {
             toolchain {
                 languageVersion.set(JavaLanguageVersion.of(17))
@@ -65,10 +74,16 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.activity:activity-ktx:1.7.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+
+    // Retrofit
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
     implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
+
+    // Glide
     implementation("com.github.bumptech.glide:glide:$glideVersion")
     kapt("com.github.bumptech.glide:compiler:$glideVersion")
+
+    // Testy
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
