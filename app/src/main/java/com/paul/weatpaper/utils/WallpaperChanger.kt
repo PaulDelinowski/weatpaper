@@ -9,7 +9,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.IOException
-import java.util.Locale
 
 class WallpaperChanger(private val context: Context) {
 
@@ -18,18 +17,18 @@ class WallpaperChanger(private val context: Context) {
 
         val partOfDay = when (currentTime) {
             in sunrise until sunset -> "day"
-            in (sunset + 1)..(sunset + 3 * 60 * 60) -> "sunset" // 3 godziny po zachodzie
-            in (sunrise - 3 * 60 * 60) until sunrise -> "sunrise" // 3 godziny przed wschodem
+            in sunset until (sunset + 2 * 60 * 60) -> "sunset"
+            in sunrise until (sunrise + 3 * 60 * 60) -> "sunrise"
             else -> "night"
         }
 
-        val weatherFolder = when (weatherCondition.lowercase(Locale.ROOT)) {
-            "clear" -> "clear"
-            "clouds" -> "cloudy"
-            "rain" -> "rainy"
-            "thunderstorm" -> "storm"
-            "drizzle" -> "rainy"
-            "snow" -> "snowy"
+        val weatherFolder = when {
+            weatherCondition.contains("thunderstorm", ignoreCase = true) -> "storm"
+            weatherCondition.contains("clear", ignoreCase = true) -> "clear"
+            weatherCondition.contains("cloud", ignoreCase = true) -> "cloudy"
+            weatherCondition.contains("rain", ignoreCase = true) -> "rainy"
+            weatherCondition.contains("drizzle", ignoreCase = true) -> "rainy"
+            weatherCondition.contains("snow", ignoreCase = true) -> "snowy"
             else -> "default"
         }
 
