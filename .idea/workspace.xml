@@ -26,116 +26,42 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="16f7a6f8-1935-43b7-ae00-abbb285029b3" name="Changes" comment="dynamiczny-wschod">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.6/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.6/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.6/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" afterDir="false" />
+    <list default="true" id="16f7a6f8-1935-43b7-ae00-abbb285029b3" name="Changes" comment="naprawa-bugow-grandle">
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/checksums/checksums.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/checksums/md5-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/checksums/sha1-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/dependencies-accessors/de920567c43d11a587dfa7385920fe8f9529c416/classes/org/gradle/accessors/dm/LibrariesForLibs$AndroidPluginAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/dependencies-accessors/de920567c43d11a587dfa7385920fe8f9529c416/classes/org/gradle/accessors/dm/LibrariesForLibs$BundleAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/dependencies-accessors/de920567c43d11a587dfa7385920fe8f9529c416/classes/org/gradle/accessors/dm/LibrariesForLibs$KotlinPluginAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/dependencies-accessors/de920567c43d11a587dfa7385920fe8f9529c416/classes/org/gradle/accessors/dm/LibrariesForLibs$PluginAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/dependencies-accessors/de920567c43d11a587dfa7385920fe8f9529c416/classes/org/gradle/accessors/dm/LibrariesForLibs$VersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/dependencies-accessors/de920567c43d11a587dfa7385920fe8f9529c416/classes/org/gradle/accessors/dm/LibrariesForLibs.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/dependencies-accessors/de920567c43d11a587dfa7385920fe8f9529c416/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$AndroidPluginAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/dependencies-accessors/de920567c43d11a587dfa7385920fe8f9529c416/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$BundleAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/dependencies-accessors/de920567c43d11a587dfa7385920fe8f9529c416/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$KotlinPluginAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/dependencies-accessors/de920567c43d11a587dfa7385920fe8f9529c416/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$PluginAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/dependencies-accessors/de920567c43d11a587dfa7385920fe8f9529c416/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock$VersionAccessors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/dependencies-accessors/de920567c43d11a587dfa7385920fe8f9529c416/classes/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/dependencies-accessors/de920567c43d11a587dfa7385920fe8f9529c416/metadata.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/dependencies-accessors/de920567c43d11a587dfa7385920fe8f9529c416/sources/org/gradle/accessors/dm/LibrariesForLibs.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/dependencies-accessors/de920567c43d11a587dfa7385920fe8f9529c416/sources/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/dependencies-accessors/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/gc.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/clear/day/aaron-burden-8qqgj7sm2hg-unsplash.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/clear/day/adam-bixby-Ix78f0AuCBI-unsplash.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/clear/day/autumn-111315_1920.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/clear/day/autumn-mott-rodeheaver-SPd9CSoWCkY-unsplash.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/clear/day/cala-C5nJ0GhmLAU-unsplash.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/clear/day/david-kovalenko-rkkr6-2I4sg-unsplash.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/clear/day/pexels-arts-1496373.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/clear/day/pexels-arts-1496378.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/clear/day/pexels-delcho-dichev-114220-1651165.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/clear/day/pexels-muverrihhanim-14118600.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/clear/day/pexels-pixabay-358238.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/clear/day/pexels-tomas-anunziata-129267-695207.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/clear/day/pexels-ummugulsum-ates-2057415001-29221112.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/clear/night/clean-night-10.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/clear/night/clean-night-8.webp" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/clear/night/clean-night-8.webp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/clear/night/clean-night-9.webp" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/clear/night/clean-night-9.webp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/clear/sunrise/pexels-coleito-3081750.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/clear/sunrise/pexels-edyttka-stawiarska-1763030-29126583.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/clear/sunrise/pexels-koolshooters-6494472.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/clear/sunrise/pexels-orlovamaria-4906196.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/clear/sunset/clean-sunset-4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/clear/sunset/clean-sunset-5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/clear/sunset/clean-sunset-6.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/clear/sunset/clean-sunset-7.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/day/pexels-bertellifotografia-3792584.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/day/pexels-hikaique-775196.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/day/pexels-lilartsy-3150551.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/day/pexels-zacharie-elbaz-1911751498-29187236.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/night/cloudy-night-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/night/cloudy-night-10.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/night/cloudy-night-2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/night/cloudy-night-3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/night/cloudy-night-5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/night/cloudy-night-6.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/night/cloudy-night-7.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/night/cloudy-night-8.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/night/cloudy-night-9.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/sunrise/cloudy-morning-7.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/sunrise/cloudy-morning-8.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/sunrise/cloudy-morning-9.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/default/day/pexels-jara-395272-3083250.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/default/sunrise/pexels-jara-395272-3083250.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/default/sunset/pexels-jara-395272-3083250.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/day/pexels-bertellifotografia-3792584.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/day/pexels-hikaique-775196.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/day/pexels-lilartsy-3150551.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/day/pexels-zacharie-elbaz-1911751498-29187236.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/night/cloudy-night-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/night/cloudy-night-10.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/night/cloudy-night-2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/night/cloudy-night-3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/night/cloudy-night-5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/night/cloudy-night-6.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/night/cloudy-night-7.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/night/cloudy-night-8.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/night/cloudy-night-9.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/sunrise/cloudy-morning-7.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/sunrise/cloudy-morning-8.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/sunrise/cloudy-morning-9.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/sunset/pexels-sena-1959966536-29212426.webp" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/sunset/pexels-sena-1959966536-29212426.webp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/day/pexels-bertellifotografia-3792584.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/day/pexels-hikaique-775196.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/day/pexels-lilartsy-3150551.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/day/pexels-zacharie-elbaz-1911751498-29187236.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/night/cloudy-night-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/night/cloudy-night-10.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/night/cloudy-night-2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/night/cloudy-night-3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/night/cloudy-night-5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/night/cloudy-night-6.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/night/cloudy-night-7.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/night/cloudy-night-8.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/night/cloudy-night-9.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/sunrise/cloudy-morning-7.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/sunrise/cloudy-morning-8.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/sunrise/cloudy-morning-9.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/sunset/pexels-sena-1959966536-29212426.webp" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/sunset/pexels-sena-1959966536-29212426.webp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/day/pexels-fromsalih-8290725.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/day/pexels-janinki-design-428112528-20709077.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/day/pexels-jara-395272-3083250.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/day/pexels-kubrakuzu-14708052.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/day/pexels-kubrakuzu-14722083.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/day/pexels-shotbyrain-3212662.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/day/rainy-day-8.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/snowy/day/cloudy-day-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/snowy/night/cloudy-night-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/snowy/sunrise/cloudy-morning-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/snowy/sunset/cloudy-sunset-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/assets/default/night/clean-night-4.webp" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/default/night/clean-night-4.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/utils/WallpaperChanger.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/utils/WallpaperChanger.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,6 +99,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 4
@@ -201,7 +130,7 @@
     "project.structure.proportion": "0.17",
     "project.structure.side.proportion": "0.2",
     "settings.build.tools.auto.reload": "ALL",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors"
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -364,7 +293,23 @@
       <option name="project" value="LOCAL" />
       <updated>1737927015660</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="naprawa-bugow-grandle">
+      <option name="closed" value="true" />
+      <created>1738167815654</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1738167815654</updated>
+    </task>
+    <task id="LOCAL-00011" summary="naprawa-bugow-grandle">
+      <option name="closed" value="true" />
+      <created>1738167837945</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1738167837945</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -385,7 +330,8 @@
     <MESSAGE value="dzialajacy-2" />
     <MESSAGE value="dzialajacy-3" />
     <MESSAGE value="usuniecie-bledow" />
-    <option name="LAST_COMMIT_MESSAGE" value="usuniecie-bledow" />
+    <MESSAGE value="naprawa-bugow-grandle" />
+    <option name="LAST_COMMIT_MESSAGE" value="naprawa-bugow-grandle" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
