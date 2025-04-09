@@ -16,11 +16,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
-import androidx.preference.PreferenceManager
+import androidx.lifecycle.Observer // Potrzebny import dla Observera LiveData
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkInfo // Potrzebny import dla WorkInfo.State
 import androidx.work.WorkManager
 import com.paul.weatpaper.R
+import com.paul.weatpaper.worker.WallpaperWorker
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -29,7 +31,13 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
         private const val TAG = "MainActivity"
+        private const val UNIQUE_WORK_NAME = "WallpaperWorker"
     }
+
+    // Dodaj zmienne dla przycisków
+    private lateinit var startButton: Button
+    private lateinit var stopButton: Button
+    private lateinit var workManager: WorkManager // Instancja WorkManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,23 +45,67 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         Log.d(TAG, "onCreate called")
-        setupButtons()
+
+        // Zainicjuj WorkManager
+        workManager = WorkManager.getInstance(this)
+
+        // Zainicjuj przyciski (znajdź je po ID)
+        startButton = findViewById(R.id.start_button)
+        stopButton = findViewById(R.id.stop_button)
+        // Możesz też zainicjować pozostałe przyciski, jeśli potrzebujesz do nich dostępu
+
+        setupButtonsClickListeners() // Zmieniona nazwa funkcji ustawiającej listenery
         checkLocationPermissions(false)
+
+        // Obserwuj stan workera, aby aktualizować przyciski
+        observeWorkerState()
     }
 
-    private fun setupButtons() {
-        val buttonsMap = mapOf<Button, () -> Unit>(
-            findViewById<Button>(R.id.howitwork_button) to { startActivity(Intent(this, HowItWorksActivity::class.java)) },
-            findViewById<Button>(R.id.info_button) to { startActivity(Intent(this, InfoActivity::class.java)) },
-            findViewById<Button>(R.id.button_website) to { openWebsite() },
-            findViewById<Button>(R.id.start_button) to { startWallpaperServiceWithChecks() },
-            findViewById<Button>(R.id.stop_button) to { stopWallpaperWorker() }
-        )
-
-        buttonsMap.forEach { (button, action) ->
-            button.setOnClickListener { action() }
-        }
+    // Funkcja ustawiająca tylko listenery
+    private fun setupButtonsClickListeners() {
+        findViewById<Button>(R.id.howitwork_button).setOnClickListener { startActivity(Intent(this, HowItWorksActivity::class.java)) }
+        findViewById<Button>(R.id.info_button).setOnClickListener { startActivity(Intent(this, InfoActivity::class.java)) }
+        findViewById<Button>(R.id.button_website).setOnClickListener { openWebsite() }
+        startButton.setOnClickListener { startWallpaperServiceWithChecks() }
+        stopButton.setOnClickListener { stopWallpaperWorker() }
     }
+
+    // Funkcja do obserwowania stanu workera
+    private fun observeWorkerState() {
+        workManager.getWorkInfosForUniqueWorkLiveData(UNIQUE_WORK_NAME)
+            .observe(this, Observer { workInfos ->
+                var isWorkerActive = false // Domyślnie worker nie jest aktywny
+                if (workInfos != null && workInfos.isNotEmpty()) {
+                    // Sprawdź stan pierwszego (i zazwyczaj jedynego) WorkInfo dla unikalnej pracy
+                    val currentState = workInfos[0].state
+                    // Uważamy workera za aktywnego, jeśli jest w kolejce lub działa
+                    isWorkerActive = currentState == WorkInfo.State.ENQUEUED || currentState == WorkInfo.State.RUNNING
+                    Log.d(TAG, "Worker state observed: $currentState, Active: $isWorkerActive")
+                } else {
+                    Log.d(TAG, "No WorkInfo found for $UNIQUE_WORK_NAME. Worker is inactive.")
+                }
+                // Zaktualizuj stan przycisków na podstawie aktywności workera
+                updateButtonStates(isWorkerActive)
+            })
+    }
+
+    // Funkcja do aktualizowania stanu przycisków Start/Stop
+    private fun updateButtonStates(isWorkerActive: Boolean) {
+        startButton.isEnabled = !isWorkerActive // Włącz Start, jeśli worker NIE jest aktywny
+        stopButton.isEnabled = isWorkerActive  // Włącz Stop, jeśli worker JEST aktywny
+
+        // Opcjonalnie: zmień wygląd przycisków (np. przezroczystość), gdy są wyłączone
+        startButton.alpha = if (startButton.isEnabled) 1.0f else 0.5f
+        stopButton.alpha = if (stopButton.isEnabled) 1.0f else 0.5f
+        Log.d(TAG, "Buttons updated: Start enabled=${startButton.isEnabled}, Stop enabled=${stopButton.isEnabled}")
+    }
+
+
+    // --- Reszta kodu pozostaje taka sama jak w poprzedniej wersji ---
+    // --- (openWebsite, startWallpaperServiceWithChecks, checkLocationPermissions, ---
+    // --- requestLocationPermissions, areLocationPermissionsGranted, startWallpaperService, ---
+    // --- scheduleWallpaperWorker z KEEP, stopWallpaperWorker, isInternetAvailable, ---
+    // --- onRequestPermissionsResult) ---
 
     private fun openWebsite() {
         val url = if (Locale.getDefault().language == "pl") "https://weatpaper.pl" else "https://weatpaper.com"
@@ -67,7 +119,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun startWallpaperServiceWithChecks() {
         if (isInternetAvailable()) {
-            checkLocationPermissions(true) // To wywoła startWallpaperService() w razie potrzeby
+            checkLocationPermissions(true)
         } else {
             Toast.makeText(this, "No internet connection available", Toast.LENGTH_LONG).show()
         }
@@ -106,11 +158,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun startWallpaperService() {
         scheduleWallpaperWorker()
-        Toast.makeText(this, "Wallpaper service started", Toast.LENGTH_SHORT).show()
+        // Toast nie jest już tak potrzebny, bo stan przycisków się zaktualizuje
+        // Toast.makeText(this, "Wallpaper service scheduled (Periodic with KEEP)", Toast.LENGTH_SHORT).show()
+        Log.i(TAG,"Wallpaper service start requested (scheduling periodic work with KEEP)")
+        // Uwaga: LiveData może nie zaktualizować się natychmiast po enqueue,
+        // więc przyciski mogą przez chwilę pozostać w starym stanie.
+        // Można by *optymistycznie* wyłączyć Start od razu tutaj, ale obserwacja LiveData jest pewniejsza.
     }
 
     private fun scheduleWallpaperWorker() {
-        val workRequest = PeriodicWorkRequestBuilder<com.paul.weatpaper.worker.WallpaperWorker>(
+        val workRequest = PeriodicWorkRequestBuilder<WallpaperWorker>(
             1,
             TimeUnit.HOURS
         )
@@ -118,21 +175,23 @@ class MainActivity : AppCompatActivity() {
             .build()
 
         try {
-            WorkManager.getInstance(this).enqueueUniquePeriodicWork(
-                "WallpaperWorker",
-                ExistingPeriodicWorkPolicy.REPLACE,
+            workManager.enqueueUniquePeriodicWork( // Używamy zmiennej workManager
+                UNIQUE_WORK_NAME,
+                ExistingPeriodicWorkPolicy.KEEP, // *** Polityka KEEP ***
                 workRequest
             )
-            Log.d(TAG, "PeriodicWorkRequest enqueued with 1 hour interval")
+            Log.d(TAG, "PeriodicWorkRequest enqueued with KEEP policy for $UNIQUE_WORK_NAME")
         } catch (e: Exception) {
-            Log.e(TAG, "Failed to schedule WallpaperWorker: ${e.message}")
+            Log.e(TAG, "Failed to schedule Periodic WallpaperWorker: ${e.message}")
         }
     }
 
     private fun stopWallpaperWorker() {
         try {
-            WorkManager.getInstance(this).cancelUniqueWork("WallpaperWorker")
-            Toast.makeText(this, "WallpaperWorker stopped", Toast.LENGTH_SHORT).show()
+            workManager.cancelUniqueWork(UNIQUE_WORK_NAME) // Używamy zmiennej workManager
+            // Toast.makeText(this, "WallpaperWorker stopped", Toast.LENGTH_SHORT).show()
+            Log.i(TAG,"Stopped unique work: $UNIQUE_WORK_NAME")
+            // Stan przycisków zaktualizuje się automatycznie przez LiveData observer
         } catch (e: Exception) {
             Log.e(TAG, "Failed to stop WallpaperWorker: ${e.message}")
         }
