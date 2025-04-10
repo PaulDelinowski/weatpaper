@@ -1,6 +1,6 @@
 package com.paul.weatpaper.ui
 
-import android.Manifest
+import android.Manifest // Upewnij się, że Manifest jest zaimportowany
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -10,16 +10,19 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
+import android.view.View
 import android.widget.Button
+import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
-import androidx.lifecycle.Observer // Potrzebny import dla Observera LiveData
+import androidx.lifecycle.Observer
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkInfo // Potrzebny import dla WorkInfo.State
+import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import com.paul.weatpaper.R
 import com.paul.weatpaper.worker.WallpaperWorker
@@ -34,34 +37,30 @@ class MainActivity : AppCompatActivity() {
         private const val UNIQUE_WORK_NAME = "WallpaperWorker"
     }
 
-    // Dodaj zmienne dla przycisków
     private lateinit var startButton: Button
     private lateinit var stopButton: Button
-    private lateinit var workManager: WorkManager // Instancja WorkManager
+    private lateinit var workManager: WorkManager
+    private lateinit var workerStatusTextView: TextView
+    private lateinit var workerProgressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContentView(R.layout.activity_main)
-
         Log.d(TAG, "onCreate called")
 
-        // Zainicjuj WorkManager
         workManager = WorkManager.getInstance(this)
-
-        // Zainicjuj przyciski (znajdź je po ID)
         startButton = findViewById(R.id.start_button)
         stopButton = findViewById(R.id.stop_button)
-        // Możesz też zainicjować pozostałe przyciski, jeśli potrzebujesz do nich dostępu
+        workerStatusTextView = findViewById(R.id.worker_status_textview)
+        workerProgressBar = findViewById(R.id.worker_progress_bar)
 
-        setupButtonsClickListeners() // Zmieniona nazwa funkcji ustawiającej listenery
+        setupButtonsClickListeners()
+        // Przy starcie sprawdzamy, czy uprawnienie jest JUŻ nadane (bez uruchamiania usługi)
         checkLocationPermissions(false)
-
-        // Obserwuj stan workera, aby aktualizować przyciski
         observeWorkerState()
     }
 
-    // Funkcja ustawiająca tylko listenery
     private fun setupButtonsClickListeners() {
         findViewById<Button>(R.id.howitwork_button).setOnClickListener { startActivity(Intent(this, HowItWorksActivity::class.java)) }
         findViewById<Button>(R.id.info_button).setOnClickListener { startActivity(Intent(this, InfoActivity::class.java)) }
@@ -70,50 +69,79 @@ class MainActivity : AppCompatActivity() {
         stopButton.setOnClickListener { stopWallpaperWorker() }
     }
 
-    // Funkcja do obserwowania stanu workera
     private fun observeWorkerState() {
         workManager.getWorkInfosForUniqueWorkLiveData(UNIQUE_WORK_NAME)
             .observe(this, Observer { workInfos ->
-                var isWorkerActive = false // Domyślnie worker nie jest aktywny
+                // ... (logika obserwera bez zmian dotyczących lokalizacji) ...
+                var isWorkerActive = false
+                var workerStatusText = "Stan usługi: Zatrzymana"
+
                 if (workInfos != null && workInfos.isNotEmpty()) {
-                    // Sprawdź stan pierwszego (i zazwyczaj jedynego) WorkInfo dla unikalnej pracy
-                    val currentState = workInfos[0].state
-                    // Uważamy workera za aktywnego, jeśli jest w kolejce lub działa
+                    val workInfo = workInfos[0]
+                    val currentState = workInfo.state
                     isWorkerActive = currentState == WorkInfo.State.ENQUEUED || currentState == WorkInfo.State.RUNNING
+
+                    workerStatusText = when (currentState) {
+                        WorkInfo.State.ENQUEUED -> "Stan usługi: Oczekuje w kolejce"
+                        WorkInfo.State.RUNNING -> "Stan usługi: Uruchomiona (pracuje)"
+                        WorkInfo.State.SUCCEEDED -> "Stan usługi: Zakończona (czeka na cykl)"
+                        WorkInfo.State.FAILED -> "Stan usługi: Błąd (spróbuje ponownie)"
+                        WorkInfo.State.BLOCKED -> "Stan usługi: Zablokowana (czeka na warunki)"
+                        WorkInfo.State.CANCELLED -> "Stan usługi: Anulowana"
+                        else -> "Stan usługi: Nieznany ($currentState)"
+                    }
+
                     Log.d(TAG, "Worker state observed: $currentState, Active: $isWorkerActive")
+
+                    val progressData = workInfo.progress
+                    val progress = progressData.getInt(WallpaperWorker.PROGRESS_KEY, -1)
+
+                    if (progress >= 0 && (currentState == WorkInfo.State.RUNNING || currentState == WorkInfo.State.ENQUEUED)) {
+                        workerProgressBar.visibility = View.VISIBLE
+                        workerProgressBar.progress = progress
+                        Log.d(TAG, "Worker progress: $progress%")
+                        if (currentState == WorkInfo.State.RUNNING && progress == 0) {
+                            workerStatusText += " (rozpoczynanie...)"
+                        } else if (currentState == WorkInfo.State.RUNNING && progress == 100) {
+                            workerStatusText += " (kończenie...)"
+                        }
+
+                    } else {
+                        workerProgressBar.visibility = View.GONE
+                        workerProgressBar.progress = 0
+                        if(currentState == WorkInfo.State.FAILED){
+                            workerStatusText = "Stan usługi: Błąd (spróbuje ponownie)"
+                        }
+                    }
+
                 } else {
                     Log.d(TAG, "No WorkInfo found for $UNIQUE_WORK_NAME. Worker is inactive.")
+                    workerStatusText = "Stan usługi: Zatrzymana"
+                    workerProgressBar.visibility = View.GONE
+                    workerProgressBar.progress = 0
                 }
-                // Zaktualizuj stan przycisków na podstawie aktywności workera
                 updateButtonStates(isWorkerActive)
+                workerStatusTextView.text = workerStatusText
             })
     }
 
-    // Funkcja do aktualizowania stanu przycisków Start/Stop
     private fun updateButtonStates(isWorkerActive: Boolean) {
-        startButton.isEnabled = !isWorkerActive // Włącz Start, jeśli worker NIE jest aktywny
-        stopButton.isEnabled = isWorkerActive  // Włącz Stop, jeśli worker JEST aktywny
-
-        // Opcjonalnie: zmień wygląd przycisków (np. przezroczystość), gdy są wyłączone
+        // ... (bez zmian) ...
+        startButton.isEnabled = !isWorkerActive
+        stopButton.isEnabled = isWorkerActive
         startButton.alpha = if (startButton.isEnabled) 1.0f else 0.5f
         stopButton.alpha = if (stopButton.isEnabled) 1.0f else 0.5f
         Log.d(TAG, "Buttons updated: Start enabled=${startButton.isEnabled}, Stop enabled=${stopButton.isEnabled}")
     }
 
-
-    // --- Reszta kodu pozostaje taka sama jak w poprzedniej wersji ---
-    // --- (openWebsite, startWallpaperServiceWithChecks, checkLocationPermissions, ---
-    // --- requestLocationPermissions, areLocationPermissionsGranted, startWallpaperService, ---
-    // --- scheduleWallpaperWorker z KEEP, stopWallpaperWorker, isInternetAvailable, ---
-    // --- onRequestPermissionsResult) ---
-
     private fun openWebsite() {
+        // ... (bez zmian) ...
         val url = if (Locale.getDefault().language == "pl") "https://weatpaper.pl" else "https://weatpaper.com"
         try {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
         } catch (e: Exception) {
             Log.e(TAG, "Failed to open website: ${e.message}")
-            Toast.makeText(this, "Unable to open website", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Nie można otworzyć strony", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -121,83 +149,96 @@ class MainActivity : AppCompatActivity() {
         if (isInternetAvailable()) {
             checkLocationPermissions(true)
         } else {
-            Toast.makeText(this, "No internet connection available", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Brak połączenia z internetem", Toast.LENGTH_LONG).show()
         }
     }
 
+    // Sprawdza uprawnienia i ewentualnie prosi o nie
     private fun checkLocationPermissions(startServiceOnGrant: Boolean) {
         when {
             areLocationPermissionsGranted() -> {
                 if (startServiceOnGrant) startWallpaperService()
+                else Log.d(TAG, "Approximate location permission already granted.")
             }
-            ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION) -> {
-                Toast.makeText(this, "Location permission is needed for wallpaper updates", Toast.LENGTH_LONG).show()
+            // --- ZMIANA: Sprawdź rationale dla COARSE ---
+            ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION) -> {
+                // ============================================
+                Toast.makeText(this, "Uprawnienia lokalizacji (przybliżone) są potrzebne do aktualizacji tapety.", Toast.LENGTH_LONG).show()
                 requestLocationPermissions()
             }
             else -> requestLocationPermissions()
         }
     }
 
+    // Prosi system o nadanie uprawnień
     private fun requestLocationPermissions() {
         ActivityCompat.requestPermissions(
             this,
+            // --- ZMIANA: Proś tylko o COARSE ---
             arrayOf(
-                Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ),
+            // ====================================
             LOCATION_PERMISSION_REQUEST_CODE
         )
+        Log.d(TAG, "Requesting COARSE location permission.")
     }
 
+    // Sprawdza, czy uprawnienie lokalizacji jest nadane
     private fun areLocationPermissionsGranted(): Boolean {
-        return ContextCompat.checkSelfPermission(
+        // --- ZMIANA: Sprawdzaj tylko COARSE ---
+        val granted = ContextCompat.checkSelfPermission(
             this,
-            Manifest.permission.ACCESS_FINE_LOCATION
+            Manifest.permission.ACCESS_COARSE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
+        Log.d(TAG, "Checking COARSE location permission: $granted")
+        return granted
+        // =====================================
     }
 
     private fun startWallpaperService() {
         scheduleWallpaperWorker()
-        // Toast nie jest już tak potrzebny, bo stan przycisków się zaktualizuje
-        // Toast.makeText(this, "Wallpaper service scheduled (Periodic with KEEP)", Toast.LENGTH_SHORT).show()
-        Log.i(TAG,"Wallpaper service start requested (scheduling periodic work with KEEP)")
-        // Uwaga: LiveData może nie zaktualizować się natychmiast po enqueue,
-        // więc przyciski mogą przez chwilę pozostać w starym stanie.
-        // Można by *optymistycznie* wyłączyć Start od razu tutaj, ale obserwacja LiveData jest pewniejsza.
+        Log.i(TAG,"Wallpaper service start requested (scheduling periodic work)")
     }
 
     private fun scheduleWallpaperWorker() {
+        // ... (bez zmian) ...
         val workRequest = PeriodicWorkRequestBuilder<WallpaperWorker>(
-            1,
+            1, // Zostawiamy 3 godziny jako przykład
             TimeUnit.HOURS
         )
             .addTag("WallpaperWorkerTag")
             .build()
 
         try {
-            workManager.enqueueUniquePeriodicWork( // Używamy zmiennej workManager
+            workManager.enqueueUniquePeriodicWork(
                 UNIQUE_WORK_NAME,
-                ExistingPeriodicWorkPolicy.KEEP, // *** Polityka KEEP ***
+                ExistingPeriodicWorkPolicy.REPLACE,
                 workRequest
             )
-            Log.d(TAG, "PeriodicWorkRequest enqueued with KEEP policy for $UNIQUE_WORK_NAME")
+            Log.d(TAG, "PeriodicWorkRequest enqueued with REPLACE policy for $UNIQUE_WORK_NAME")
+            Toast.makeText(this, "Usługa tapet została zaplanowana.", Toast.LENGTH_SHORT).show()
+
         } catch (e: Exception) {
             Log.e(TAG, "Failed to schedule Periodic WallpaperWorker: ${e.message}")
+            Toast.makeText(this, "Błąd podczas planowania usługi: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
         }
     }
 
     private fun stopWallpaperWorker() {
+        // ... (bez zmian) ...
         try {
-            workManager.cancelUniqueWork(UNIQUE_WORK_NAME) // Używamy zmiennej workManager
-            // Toast.makeText(this, "WallpaperWorker stopped", Toast.LENGTH_SHORT).show()
+            workManager.cancelUniqueWork(UNIQUE_WORK_NAME)
             Log.i(TAG,"Stopped unique work: $UNIQUE_WORK_NAME")
-            // Stan przycisków zaktualizuje się automatycznie przez LiveData observer
+            Toast.makeText(this, "Usługa tapet została zatrzymana.", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
             Log.e(TAG, "Failed to stop WallpaperWorker: ${e.message}")
+            Toast.makeText(this, "Błąd podczas zatrzymywania usługi: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
         }
     }
 
     private fun isInternetAvailable(): Boolean {
+        // ... (bez zmian) ...
         val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val network = connectivityManager.activeNetwork ?: return false
         val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
@@ -211,15 +252,27 @@ class MainActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                startWallpaperService()
-            } else {
-                Toast.makeText(this, "Location permission denied", Toast.LENGTH_SHORT).show()
-                if (!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
-                    Toast.makeText(this, "Please enable location permission in settings", Toast.LENGTH_LONG).show()
-                    startActivity(Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
-                        data = Uri.fromParts("package", packageName, null)
-                    })
+            // Sprawdźmy, czy to na pewno odpowiedź na naszą prośbę (powinna zawierać COARSE)
+            if (permissions.contains(Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.i(TAG, "ACCESS_COARSE_LOCATION permission granted.")
+                    startWallpaperService()
+                } else {
+                    Log.w(TAG, "ACCESS_COARSE_LOCATION permission denied.")
+                    Toast.makeText(this, "Odmówiono uprawnień lokalizacji (przybliżonej).", Toast.LENGTH_SHORT).show()
+                    // --- ZMIANA: Sprawdź rationale dla COARSE ---
+                    if (!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                        // ============================================
+                        Toast.makeText(this, "Włącz uprawnienia lokalizacji (przybliżone) w ustawieniach aplikacji.", Toast.LENGTH_LONG).show()
+                        try {
+                            startActivity(Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+                                data = Uri.fromParts("package", packageName, null)
+                            })
+                        } catch (e: Exception){
+                            Log.e(TAG, "Could not open app settings: ${e.message}")
+                            Toast.makeText(this, "Nie można otworzyć ustawień aplikacji.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
             }
         }
