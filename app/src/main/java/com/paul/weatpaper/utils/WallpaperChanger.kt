@@ -25,7 +25,7 @@ class WallpaperChanger(private val context: Context) {
 
         // Oblicz granice nowych okresów
         val sunrise_period_end = sunrise + 3600      // Koniec okresu "sunrise" = 1 godzina po wschodzie
-        val sunset_period_start = sunset - 3600     // Początek okresu "sunset" = 1 godzina przed zachodem
+        val sunset_period_start = sunset - 7200     // Początek okresu "sunset" = 1 godzina przed zachodem
 
         // --- NOWA LOGIKA USTALANIA PORY DNIA ---
         val partOfDay = when {

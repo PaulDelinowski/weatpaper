@@ -26,73 +26,15 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="16f7a6f8-1935-43b7-ae00-abbb285029b3" name="Changes" comment="wznowienie prac">
+    <list default="true" id="16f7a6f8-1935-43b7-ae00-abbb285029b3" name="Changes" comment="naprawienie bledu lokalizacji">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/night/clean-night-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/night/clean-night-2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/night/clean-night-3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/night/clean-night-4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/night/clean-night-5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/night/clean-night-6.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/night/clean-night-8.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/night/clean-night-9.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/sunset/cloudy-sunset-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/cloudy/sunset/pexels-sena-1959966536-29212426.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/night/clean-night-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/night/clean-night-2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/night/clean-night-3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/night/clean-night-4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/night/clean-night-5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/night/clean-night-6.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/night/clean-night-8.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/night/clean-night-9.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/sunset/cloudy-sunset-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/mostly_cloudy/sunset/pexels-sena-1959966536-29212426.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/night/clean-night-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/night/clean-night-2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/night/clean-night-3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/night/clean-night-4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/night/clean-night-5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/night/clean-night-6.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/night/clean-night-8.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/night/clean-night-9.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/sunset/cloudy-sunset-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/partly_cloudy/sunset/pexels-sena-1959966536-29212426.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/day/mitchell-mccleary-Sffn3x3u6mo-unsplash.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/night/rainy-night-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/night/rainy-night-2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/night/rainy-night-3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/night/rainy-night-4.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/night/rainy-night-5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/night/rainy-night-6.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/night/rainy-night-7.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/night/rainy-night-8.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/night/rainy-night-9.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/sunrise/rainy-morning-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/sunrise/rainy-morning-10.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/sunrise/rainy-morning-2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/sunrise/rainy-morning-3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/sunrise/rainy-morning-5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/sunrise/rainy-morning-6.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/sunrise/rainy-morning-7.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/sunrise/rainy-morning-8.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/sunset/rainy-sunset-1.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/sunset/rainy-sunset-10.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/sunset/rainy-sunset-2.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/sunset/rainy-sunset-3.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/sunset/rainy-sunset-5.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/sunset/rainy-sunset-6.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/sunset/rainy-sunset-7.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/rainy/sunset/rainy-sunset-8.webp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/ui/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/ui/MainActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/utils/LocationProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/utils/LocationProvider.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/utils/WallpaperChanger.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/utils/WallpaperChanger.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/worker/WallpaperWorker.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/worker/WallpaperWorker.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,6 +105,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-34/android.jar!/android/Manifest.class" root0="SKIP_INSPECTION" />
     <setting file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-34/android/app/Activity.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -180,28 +123,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Android App.app.executor": "Run",
-    "Gradle.Download Sources.executor": "Run",
-    "PROJECT_TRUSTED_KEY": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "com.google.services.firebase.aqiPopupShown": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/pawel/.gradle",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2",
-    "settings.build.tools.auto.reload": "ALL",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;PROJECT_TRUSTED_KEY&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/pawel/.gradle&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.build.tools.auto.reload&quot;: &quot;ALL&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\pawel\AndroidStudioProjects\Weatpaper\app\src\main\java" />
@@ -394,7 +337,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742503236920</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="naprawienie bledu lokalizacji">
+      <option name="closed" value="true" />
+      <created>1744214798339</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1744214798339</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -417,7 +368,8 @@
     <MESSAGE value="usuniecie-bledow" />
     <MESSAGE value="naprawa-bugow-grandle" />
     <MESSAGE value="wznowienie prac" />
-    <option name="LAST_COMMIT_MESSAGE" value="wznowienie prac" />
+    <MESSAGE value="naprawienie bledu lokalizacji" />
+    <option name="LAST_COMMIT_MESSAGE" value="naprawienie bledu lokalizacji" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -434,12 +386,12 @@
       <map>
         <entry key="com.paul.weatpaper">
           <value>
-            <CheckInfo lastCheckTimestamp="1744055381910" />
+            <CheckInfo lastCheckTimestamp="1744216147698" />
           </value>
         </entry>
         <entry key="com.paul.weatpaper.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1744055381907" />
+            <CheckInfo lastCheckTimestamp="1744216147699" />
           </value>
         </entry>
       </map>
