@@ -26,15 +26,148 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="16f7a6f8-1935-43b7-ae00-abbb285029b3" name="Changes" comment="naprawienie bledu lokalizacji">
+    <list default="true" id="16f7a6f8-1935-43b7-ae00-abbb285029b3" name="Changes" comment="naprawki">
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/day/ben-collins-1diYiUNAe9U-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/day/jake-blucker-tMzCrBkM99Y-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/day/johannes-andersson-UCd78vfC8vU-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/day/pexels-coleito-2388650.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/day/pexels-evgeny-tchebotarev-1058775-2187322.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/day/pexels-fotios-photos-2106037.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/day/pexels-jmark-250591.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/day/pexels-kpaukshtite-1591225.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/day/pexels-lukas-dlutko-1278617-2440299.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/day/pexels-pixabay-66304.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/day/pexels-vuralyavas-1076607.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/day/pexels-xuan-hoa-le-12135-61379.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/day/pranav-shrivastava-vCOUWGfFK9c-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/day/ricardo-frantz-D9lDqguxy4Y-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/day/summer-rune-eCXjs77mWjI-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/day/tony-reid-eMaS4mzaksU-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/sunrise/collins-lesulie-joeYt1WNVWY-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/sunrise/giuseppe-mondi-fJWYwHWYQpY-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/sunrise/jesse-gardner-9DHyVy-G1rM-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/sunrise/peaceful-view-morning-light.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/sunrise/pexels-japy-1928491.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/sunrise/pexels-kovyrina-1600139 (1).webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/sunrise/pexels-taryn-elliott-4729738.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/sunrise/sara-kurfess-ltE8bDLjX9E-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/sunrise/todd-trapani-91T-rq-pY28-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/sunset/ahmed-nishaath-tD7e9hVIRZo-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/sunset/dave-hoefler-D-FI-GHZeVc-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/sunset/nattipat-vesvarute-NQWaAFoPhPY-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/sunset/pexels-fabio2311-712395.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/sunset/pexels-harrison-candlin-1279336-2441461.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/sunset/pexels-iriser-673857.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/sunset/pexels-todd-trapani-488382-1420440.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/sunset/pexels-trupert-1032653.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/sunset/pexels-wardmediauk-3347244.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/sunset/rachel-cook-mOcdke2ZQoE-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/sunset/ramiro-pianarosa-GIW-ac6tTJs-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/clear/sunset/timo-wagner-fT6-YkB0nfg-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/cloud/day/aurelien-dockwiller-Rzo7hwe7rR0-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/cloud/day/colin-lloyd-j3JSjhCeMRU-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/cloud/day/karsten-wurth-n4PSXU-dCTQ-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/cloud/day/pexels-guiirossi-1755683.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/cloud/day/pexels-merictuna-31474122.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/cloud/day/pexels-potsclam-1828305.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/cloud/day/pexels-tobiasbjorkli-2058732.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/cloud/day/raychel-sanner-MnnXMvs4cQo-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/cloud/day/sergei-solo-iHW-JTEkr2c-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/cloud/day/timothy-chan-FNWc_Dqsw2g-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/cloud/night/abhishek-koli-DsxD_bTq8x0-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/cloud/night/ahmad-pishnamazi-vN_FXFnxQ6s-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/cloud/night/chris-henry-RGoHlI2wD34-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/cloud/night/mohammadreza-charkhgard-inx7hs9w-AY-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/cloud/night/swapnil-potdar-P6d_O9IsHPg-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/cloud/night/taiki-ishikawa-BuHFxwFSGzo-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/cloud/sunrise/hanaori-qSraVkDAA_U-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/cloud/sunrise/ivan-friz--zfFbXfhPYY-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/cloud/sunrise/paul-corono-JCQPj5azL3Q-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/cloud/sunrise/tao-yuan-XjqgZ3HMIPc-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/cloud/sunrise/yoel-winkler-YM1qhq5n46k-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/cloud/sunset/pexels-lazybird-1212600.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/cloud/sunset/pexels-paul-voie-2627945.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/day/antonio-janeski-Cn7aKvDiUKA-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/day/antonio-janeski-TM80sQGcNjY-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/day/craig-whitehead-aJfy0WtHtkc-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/day/craig-whitehead-y9uWW3uZ-bk-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/day/dan-calderwood-GJez8OZsyec-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/day/mehrshad-rajabi-BFPedJwT8FI-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/day/nathan-dumlao-alSTDADj0lk-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/day/pexels-aleksandra-larry-77353944-17846906.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/day/pexels-alesiakozik-6632721.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/day/pexels-andiravsanjani-1915182.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/day/pexels-chris-221718132-31459052.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/day/pexels-iriser-3288790.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/day/pexels-simon73-1183099.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/day/pexels-thirdman-5538149.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/day/priscilla-du-preez-MU93ZoQPNB8-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/day/xianyu-hao-n6pu9ZDOaN4-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/night/farhood-amni-uqkv9yKylgc-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/night/luke-van-zyl-IIGPOEQNH7o-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/night/pexels-1825399-3414515.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/night/pexels-bertellifotografia-594301.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/night/pexels-krislucas90-3391254.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/night/pexels-muhammad-rifki-adiyanto-294769-2327766.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/night/pexels-oandremoura-3368485.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/sunrise/aimee-giles-sM36BiDQ5Qs-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/sunrise/filip-zrnzevic-_EMkxLdko9k-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/sunrise/jonathan-klok-NeRzxya_zyI-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/sunrise/marc-zimmer-1dNujhlCTYQ-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/sunrise/nadia-valko-gllXcxhd47w-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/sunrise/pesce-huang-FgJuYIQw87I-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/sunrise/suhyeon-choi-HCDugQDdtfc-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/sunset/ayla-blaise-mItodTlV360-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/sunset/ayumi-kubo-lcFDcF7xRtU-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/sunset/griffin-wooldridge-yanSiUbj4wQ-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/sunset/hassan-faisal-tO2y9trJQ60-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/sunset/helmut-blanco-kSmiDI41ixI-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/sunset/jordan-steranka-8yuwpaWQDkY-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/sunset/joyce-g-87hJgV_9LVk-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/sunset/julia-vivcharyk-sOGBUAKZhyM-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/sunset/karl-hedin-qB5cXGkbJ3k-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/sunset/khristina-sergeychik-ZnAMMaCGJPw-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/sunset/luis-barrios-usXUAC2gTSg-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/sunset/mariia-gladysh-odq2xq5RfhA-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/sunset/maximilian-zahn-0hynFtWJvYk-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/sunset/mohammad-mohammadpour-fIfBJ--OjM8-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/rain/sunset/sergio-arteaga-OQXq8exgxgQ-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/thunderstorm/day/clayton-malquist-k-sk07-7vkA-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/thunderstorm/day/david-moum-nbqlWhOVu6k-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/thunderstorm/day/forrest-moreland-vdSufXuwK-s-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/thunderstorm/day/luka-vovk-EngLPePzg7U-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/thunderstorm/day/nikolas-noonan-fQM8cbGY6iQ-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/thunderstorm/night/artur-stanulevich-F_zWvxrQeCk-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/thunderstorm/night/nikolett-emmert-vGa4f2Oy9kI-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/thunderstorm/sunrise/igor-kyryliuk-tetiana-kravchenko-b6DAMF9vZcA-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/thunderstorm/sunrise/jonathan-bowers-BqKdvJ8a5TI-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/thunderstorm/sunrise/nikolas-noonan-fQM8cbGY6iQ-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/thunderstorm/sunrise/valentin-muller-bWtd1ZyEy6w-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/thunderstorm/sunrise/visualsofdusk-SuvAY-ndNO4-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/thunderstorm/sunset/igor-kyryliuk-tetiana-kravchenko-b6DAMF9vZcA-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/thunderstorm/sunset/jonathan-bowers-BqKdvJ8a5TI-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/thunderstorm/sunset/nikolas-noonan-fQM8cbGY6iQ-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/thunderstorm/sunset/valentin-muller-bWtd1ZyEy6w-unsplash.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/assets/thunderstorm/sunset/visualsofdusk-SuvAY-ndNO4-unsplash.webp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/ui/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/ui/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/utils/LocationProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/utils/LocationProvider.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/utils/WallpaperChanger.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/utils/WallpaperChanger.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/worker/WallpaperWorker.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/worker/WallpaperWorker.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.webp" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.webp" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-pl/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-pl/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,30 +256,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;PROJECT_TRUSTED_KEY&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/pawel/.gradle&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.build.tools.auto.reload&quot;: &quot;ALL&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Android App.app.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "PROJECT_TRUSTED_KEY": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "com.google.services.firebase.aqiPopupShown": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/pawel/.gradle",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.17",
+    "project.structure.side.proportion": "0.2",
+    "settings.build.tools.auto.reload": "ALL",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\pawel\AndroidStudioProjects\Weatpaper" />
       <recent name="C:\Users\pawel\AndroidStudioProjects\Weatpaper\app\src\main\java" />
       <recent name="C:\Users\pawel\AndroidStudioProjects\Weatpaper\app\src\main" />
     </key>
@@ -345,7 +479,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744214798339</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="naprawki">
+      <option name="closed" value="true" />
+      <created>1744314160504</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1744314160504</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -369,7 +511,8 @@
     <MESSAGE value="naprawa-bugow-grandle" />
     <MESSAGE value="wznowienie prac" />
     <MESSAGE value="naprawienie bledu lokalizacji" />
-    <option name="LAST_COMMIT_MESSAGE" value="naprawienie bledu lokalizacji" />
+    <MESSAGE value="naprawki" />
+    <option name="LAST_COMMIT_MESSAGE" value="naprawki" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -386,12 +529,12 @@
       <map>
         <entry key="com.paul.weatpaper">
           <value>
-            <CheckInfo lastCheckTimestamp="1744216147698" />
+            <CheckInfo lastCheckTimestamp="1744400573940" />
           </value>
         </entry>
         <entry key="com.paul.weatpaper.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1744216147699" />
+            <CheckInfo lastCheckTimestamp="1744400573929" />
           </value>
         </entry>
       </map>
