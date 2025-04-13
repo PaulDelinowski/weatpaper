@@ -235,8 +235,8 @@ class MainActivity : AppCompatActivity() {
     // Planuje zadanie WorkManagera (bez zmian)
     private fun scheduleWallpaperWorker() {
         val workRequest = PeriodicWorkRequestBuilder<WallpaperWorker>(
-            3, // Ustaw interwał (np. 3 godziny)
-            TimeUnit.HOURS
+            30, // Ustaw interwał (np. 3 godziny)
+            TimeUnit.MINUTES
         )
             .addTag("WallpaperWorkerTag")
             .build()

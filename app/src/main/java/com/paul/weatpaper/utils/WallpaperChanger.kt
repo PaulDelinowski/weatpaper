@@ -25,7 +25,7 @@ class WallpaperChanger(private val context: Context) {
 
         // Oblicz granice nowych okresów
         val sunrise_period_end = sunrise + 3600      // Koniec okresu "sunrise" = 1 godzina po wschodzie
-        val sunset_period_start = sunset - 7200     // Początek okresu "sunset" = 1 godzina przed zachodem
+        val sunset_period_start = sunset - 7200     // Początek okresu "sunset" = 1 godzina przed zachodem (UWAGA: tu było 7200 czyli 2h, zostawiam jak było, ale może chciałeś 3600?)
 
         // --- NOWA LOGIKA USTALANIA PORY DNIA ---
         val partOfDay = when {
@@ -44,16 +44,26 @@ class WallpaperChanger(private val context: Context) {
         // Logowanie dla weryfikacji obliczonej pory dnia
         Log.d("WallpaperChanger", "Current time: $currentTime, Sunrise: $sunrise, Sunset: $sunset, Calculated partOfDay: $partOfDay")
 
-        // --- Logika mapowania pogody na folder (bez zmian z Twojego oryginalnego kodu) ---
+        // --- Logika mapowania pogody na folder (ZMODYFIKOWANA) ---
         val weatherFolder = when {
-            weatherCondition.contains("clear", ignoreCase = true) -> "clear"
-            weatherCondition.contains("cloud", ignoreCase = true) -> "cloud"
+            // Chmury: Tylko duże lub całkowite zachmurzenie
+            weatherCondition.equals("broken clouds", ignoreCase = true) ||
+                    weatherCondition.equals("overcast clouds", ignoreCase = true) -> "cloud"
+
+            // Czysto: Czyste niebo lub lekkie/rozproszone chmury
+            weatherCondition.equals("clear sky", ignoreCase = true) ||
+                    weatherCondition.equals("few clouds", ignoreCase = true) ||
+                    weatherCondition.equals("scattered clouds", ignoreCase = true) -> "clear"
+
+            // Deszcz: Bez zmian
             weatherCondition.contains("rain", ignoreCase = true) ||
                     weatherCondition.contains("drizzle", ignoreCase = true) -> "rain"
-            // Możesz dodać więcej warunków pogodowych (Snow, Mist, Fog, etc.) tutaj, jeśli chcesz
-            else -> "clear" // Domyślna, jeśli pogoda nie pasuje do powyższych
+
+            // Domyślnie: Czysto (dla innych warunków np. mgła, śnieg, których nie obsługujemy jawnie)
+            else -> "clear"
         }
-        Log.d("WallpaperChanger", "Mapped weather condition '$weatherCondition' to folder '$weatherFolder'")
+        Log.d("WallpaperChanger", "Mapped weather condition '$weatherCondition' to folder '$weatherFolder'") // Logowanie bez zmian
+
 
         // --- Ustalanie ścieżki i zmiana tapety (z usprawnioną obsługą korutyn) ---
         val folderPath = "$weatherFolder/$partOfDay"
