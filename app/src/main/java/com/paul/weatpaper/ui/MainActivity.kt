@@ -75,7 +75,8 @@ class MainActivity : AppCompatActivity() {
             .observe(this, Observer { workInfos ->
                 // ... (logika obserwera bez zmian dotyczących lokalizacji) ...
                 var isWorkerActive = false
-                var workerStatusText = "Stan usługi: Zatrzymana"
+                // --- ZMIANA: Teksty po angielsku ---
+                var workerStatusText = "Service Status: Stopped" // Domyślnie
 
                 if (workInfos != null && workInfos.isNotEmpty()) {
                     val workInfo = workInfos[0]
@@ -83,14 +84,15 @@ class MainActivity : AppCompatActivity() {
                     isWorkerActive = currentState == WorkInfo.State.ENQUEUED || currentState == WorkInfo.State.RUNNING
 
                     workerStatusText = when (currentState) {
-                        WorkInfo.State.ENQUEUED -> "Stan usługi: Oczekuje w kolejce"
-                        WorkInfo.State.RUNNING -> "Stan usługi: Uruchomiona (pracuje)"
-                        WorkInfo.State.SUCCEEDED -> "Stan usługi: Zakończona (czeka na cykl)"
-                        WorkInfo.State.FAILED -> "Stan usługi: Błąd (spróbuje ponownie)"
-                        WorkInfo.State.BLOCKED -> "Stan usługi: Zablokowana (czeka na warunki)"
-                        WorkInfo.State.CANCELLED -> "Stan usługi: Anulowana"
-                        else -> "Stan usługi: Nieznany ($currentState)"
+                        WorkInfo.State.ENQUEUED -> "Service Status: Enqueued"
+                        WorkInfo.State.RUNNING -> "Service Status: Running"
+                        WorkInfo.State.SUCCEEDED -> "Service Status: Succeeded (waiting for cycle)"
+                        WorkInfo.State.FAILED -> "Service Status: Failed (will retry)" // Domyślnie dla FAILED
+                        WorkInfo.State.BLOCKED -> "Service Status: Blocked (waiting for constraints)"
+                        WorkInfo.State.CANCELLED -> "Service Status: Cancelled"
+                        else -> "Service Status: Unknown ($currentState)" // Uwzględnienie stanu nieznanego
                     }
+                    // --- Koniec ZMIANY ---
 
                     Log.d(TAG, "Worker state observed: $currentState, Active: $isWorkerActive")
 
@@ -101,29 +103,32 @@ class MainActivity : AppCompatActivity() {
                         workerProgressBar.visibility = View.VISIBLE
                         workerProgressBar.progress = progress
                         Log.d(TAG, "Worker progress: $progress%")
+                        // --- ZMIANA: Teksty po angielsku ---
                         if (currentState == WorkInfo.State.RUNNING && progress == 0) {
-                            workerStatusText += " (rozpoczynanie...)"
+                            workerStatusText += " (starting...)"
                         } else if (currentState == WorkInfo.State.RUNNING && progress == 100) {
-                            workerStatusText += " (kończenie...)"
+                            workerStatusText += " (finishing...)"
                         }
+                        // --- Koniec ZMIANY ---
 
                     } else {
                         workerProgressBar.visibility = View.GONE
                         workerProgressBar.progress = 0
                         if(currentState == WorkInfo.State.FAILED){
-                            // Dodatkowe sprawdzenie, czy błąd był spowodowany brakiem uprawnień
-                            // (Można by to przekazać przez dane wyjściowe Workera, ale na razie zostawiamy ogólny błąd)
-                            if (progress == -1) { // Możemy użyć -1 jako kodu błędu, jak w workerze
-                                workerStatusText = "Stan usługi: Błąd (np. lokalizacji, API)"
-                            } else {
-                                workerStatusText = "Stan usługi: Błąd (spróbuje ponownie)"
+                            if (progress == -1) { // Możemy użyć -1 jako kodu błędu
+                                // --- ZMIANA: Teksty po angielsku ---
+                                workerStatusText = "Service Status: Error (e.g., location, API)"
+                                // --- Koniec ZMIANY ---
                             }
+                            // else: workerStatusText pozostaje domyślnym dla FAILED (Failed (will retry))
                         }
                     }
 
                 } else {
                     Log.d(TAG, "No WorkInfo found for $UNIQUE_WORK_NAME. Worker is inactive.")
-                    workerStatusText = "Stan usługi: Zatrzymana"
+                    // --- ZMIANA: Teksty po angielsku (już ustawione domyślnie wyżej) ---
+                    // workerStatusText = "Service Status: Stopped" // Niepotrzebne, bo to domyślne
+                    // --- Koniec ZMIANY ---
                     workerProgressBar.visibility = View.GONE
                     workerProgressBar.progress = 0
                 }
