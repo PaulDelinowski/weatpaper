@@ -2,9 +2,8 @@ package com.paul.weatpaper.utils
 
 import android.app.WallpaperManager
 import android.content.Context
-import android.util.Log
-// Usunięty import Toast: import android.widget.Toast
-import kotlinx.coroutines.Dispatchers // Potrzebny import dla withContext
+import android.util.Log // Upewnij się, że Log jest zaimportowany
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.IOException
 
@@ -14,7 +13,7 @@ class WallpaperChanger(private val context: Context) {
      * Zmienia tapetę na podstawie pogody i pory dnia.
      * Używa nowej logiki czasowej:
      * - sunrise: od wschodu przez 1h
-     * - sunset: od 1h przed zachodem do zachodu
+     * - sunset: od 1h przed zachodem do zachodu (UWAGA: w kodzie jest 2h przed zachodem)
      * - day: pomiędzy końcem 'sunrise' a początkiem 'sunset'
      * - night: od zachodu do wschodu
      *
@@ -25,14 +24,14 @@ class WallpaperChanger(private val context: Context) {
 
         // Oblicz granice nowych okresów
         val sunrise_period_end = sunrise + 3600      // Koniec okresu "sunrise" = 1 godzina po wschodzie
-        val sunset_period_start = sunset - 7200     // Początek okresu "sunset" = 1 godzina przed zachodem (UWAGA: tu było 7200 czyli 2h, zostawiam jak było, ale może chciałeś 3600?)
+        val sunset_period_start = sunset - 7200     // Początek okresu "sunset" = 2 godziny przed zachodem
 
         // --- NOWA LOGIKA USTALANIA PORY DNIA ---
         val partOfDay = when {
             // Okres "Sunrise": Od wschodu do godziny po wschodzie
             currentTime >= sunrise && currentTime < sunrise_period_end -> "sunrise"
 
-            // Okres "Sunset": Od godziny przed zachodem do momentu zachodu
+            // Okres "Sunset": Od 2 godzin przed zachodem do momentu zachodu
             currentTime >= sunset_period_start && currentTime < sunset -> "sunset"
 
             // Okres "Day": Pomiędzy końcem okresu "sunrise" a początkiem okresu "sunset"
@@ -44,11 +43,19 @@ class WallpaperChanger(private val context: Context) {
         // Logowanie dla weryfikacji obliczonej pory dnia
         Log.d("WallpaperChanger", "Current time: $currentTime, Sunrise: $sunrise, Sunset: $sunset, Calculated partOfDay: $partOfDay")
 
-        // --- Logika mapowania pogody na folder (ZMODYFIKOWANA) ---
+
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        // +++ DODANY LOG: Sprawdzenie wartości weatherCondition PRZED blokiem 'when' +++
+        Log.d("WallpaperChanger", "Checking weatherCondition before mapping: '$weatherCondition'")
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+        // --- Logika mapowania pogody na folder (Z POPRAWKĄ DLA "Clouds") ---
         val weatherFolder = when {
-            // Chmury: Tylko duże lub całkowite zachmurzenie
+            // Chmury: Duże, całkowite LUB ogólny opis 'Clouds'
             weatherCondition.equals("broken clouds", ignoreCase = true) ||
-                    weatherCondition.equals("overcast clouds", ignoreCase = true) -> "cloud"
+                    weatherCondition.equals("overcast clouds", ignoreCase = true) ||
+                    weatherCondition.equals("Clouds", ignoreCase = true) -> "cloud" // <<< DODANO "Clouds"
 
             // Czysto: Czyste niebo lub lekkie/rozproszone chmury
             weatherCondition.equals("clear sky", ignoreCase = true) ||
@@ -62,7 +69,8 @@ class WallpaperChanger(private val context: Context) {
             // Domyślnie: Czysto (dla innych warunków np. mgła, śnieg, których nie obsługujemy jawnie)
             else -> "clear"
         }
-        Log.d("WallpaperChanger", "Mapped weather condition '$weatherCondition' to folder '$weatherFolder'") // Logowanie bez zmian
+        // Logowanie zmapowanego folderu (bez zmian)
+        Log.d("WallpaperChanger", "Mapped weather condition '$weatherCondition' to folder '$weatherFolder'")
 
 
         // --- Ustalanie ścieżki i zmiana tapety (z usprawnioną obsługą korutyn) ---

@@ -11,10 +11,11 @@
     <string name="back_button_text">Powrót</string>
     <string name="contact_text">Developed by Paweł Delinowski\npaweldelinowski@outlook.com\nwww.weatpaper.com</string>
     <string name="info_button_text">Ważne info</string>
-    <string name="info_text_1">Aplikacja co godzinę będzie zmieniać tapetę w zależności od pory dnia, pogody, Twojej lokalizacji.</string>
+    <string name="info_text_1">Aplikacja co około 30 minut będzie zmieniać tapetę w zależności od pory dnia, pogody, Twojej lokalizacji.</string>
     <string name="info_text_2">Aby wszystko działało zgodnie z planem pamiętaj o:</string>
     <string name="info_text_3">Dostępie do interneu\nWłączonej lokalizaci\nuruchomionej aplikacji</string>
     <string name="info_text_4">Po kliknięciu przycisku start, aplikację możesz zminimalizować, jednak pamiętaj, aby jej nie zamykać!</string>
+
     <string name="add_image">Polityka prywatności</string>
     <string name="stop_button_text">Zatrzymaj!</string>
 
