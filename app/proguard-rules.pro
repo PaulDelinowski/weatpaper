@@ -20,24 +20,54 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
-# --- Reguły Specyficzne dla Aplikacji Weatpaper ---
+# --- Reguły dla Retrofit + Gson + Coroutines (Kluczowe dla ClassCastException) ---
 
-# Zachowaj (keep) klasy modelu danych z pakietu com.paul.weatpaper.data.model
-# przed usunięciem lub zmianą nazw przez R8/ProGuard.
-# Jest to kluczowe dla poprawnego działania bibliotek takich jak Gson (używanej przez Retrofit),
-# które polegają na nazwach pól do mapowania danych JSON.
-# `**` oznacza wszystkie klasy w tym pakiecie i jego podpakietach.
-# `{ *; }` oznacza zachowanie wszystkich pól i metod w tych klasach.
+# Zachowaj atrybuty potrzebne do serializacji/deserializacji i metadanych
+# KotlinGeneratedByMember i inne są ważne dla Coroutines i funkcji suspend
+-keepattributes Signature, InnerClasses, EnclosingMethod, Modifiers, Exceptions, Module*, *Annotation*, KotlinGeneratedByMember
+
+# Reguły dla Gson
+-keep class com.google.gson.reflect.TypeToken { *; }
+-keep class * implements com.google.gson.TypeAdapterFactory
+-keep class * implements com.google.gson.JsonSerializer
+-keep class * implements com.google.gson.JsonDeserializer
+# Zachowaj klasy modelu danych (Twoja reguła była poprawna, powtórzona dla pewności)
+# Użycie @SerializedName jest kluczowe, ale zachowanie klasy jest bezpieczniejsze.
 -keep class com.paul.weatpaper.data.model.** { *; }
+# Dodatkowo zachowaj członków klas modelu (pola, metody), co jest bezpieczniejsze
+-keepclassmembers class com.paul.weatpaper.data.model.** { *; }
 
-# Zachowaj atrybuty 'Signature'. Jest to ważne dla bibliotek (jak Gson),
-# które mogą potrzebować informacji o typach generycznych podczas działania
-# (np. przy deserializacji list List<WeatherInfo>).
--keepattributes Signature
+# Reguły dla Retrofit
+# Zachowaj swój interfejs API
+-keep interface com.paul.weatpaper.data.remote.WeatherApi { *; }
+# Zachowaj klasę Response Retrofita
+-keep class retrofit2.Response { *; }
 
-# Zachowaj adnotacje. Jest to ważne, ponieważ Gson używa adnotacji
-# takich jak @SerializedName do poprawnego mapowania pól JSON na pola klas Kotlin/Java.
-# Inne biblioteki również mogą polegać na adnotacjach.
--keepattributes *Annotation*
+# Reguły dla OkHttp i Okio (zależności Retrofit)
+# Zapewniają, że klasy używane do komunikacji sieciowej nie zostaną usunięte/zmienione
+-keep class okhttp3.** { *; }
+-keep interface okhttp3.** { *; }
+-keep class okio.** { *; }
 
-# --- Koniec reguł dla Weatpaper ---
+# Reguły dla Kotlin Coroutines (używane z `suspend fun` w Retrofit)
+# Zapewniają, że mechanizmy coroutines działają poprawnie po optymalizacji R8
+-keepclassmembers class kotlinx.coroutines.flow.** { *; }
+-keepclassmembers class **$*COROUTINE* { *; }
+-keep class kotlinx.coroutines.flow.StateFlow* { *; }
+-keep class kotlin.coroutines.Continuation { *; }
+
+
+# --- Reguły dla WorkManagera (Twoje reguły były poprawne) ---
+-keep public class * extends androidx.work.ListenableWorker
+-keepclassmembers public class * extends androidx.work.ListenableWorker {
+    public <init>(android.content.Context, androidx.work.WorkerParameters);
+}
+
+# --- Dodaj tutaj inne potrzebne reguły specyficzne dla Twojego projektu, jeśli takie istnieją ---
+
+# Przykład dla Glide (często niepotrzebne z procesorem adnotacji KAPT, ale na wszelki wypadek):
+# -keep public class * implements com.bumptech.glide.module.GlideModule
+# -keep public class * extends com.bumptech.glide.module.AppGlideModule
+# -keep public enum com.bumptech.glide.load.ImageHeaderParser$ImageType { *; }
+# -keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$ImageType { *; }
+

@@ -1,12 +1,13 @@
 package com.paul.weatpaper.ui
 
-import android.Manifest // Upewnij się, że Manifest jest zaimportowany
+import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.Uri
+import android.os.Build // <<< Dodany import dla Build
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
@@ -15,7 +16,7 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog // <<< Dodany import dla AlertDialog
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -33,7 +34,10 @@ import java.util.concurrent.TimeUnit
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
+        // === ZMIENIONE/DODANE KODY ŻĄDAŃ ===
+        private const val LOCATION_PERMISSION_REQUEST_CODE = 1 // Dla COARSE
+        private const val BACKGROUND_LOCATION_PERMISSION_REQUEST_CODE = 2 // Dla BACKGROUND
+        // ===================================
         private const val TAG = "MainActivity"
         private const val UNIQUE_WORK_NAME = "WallpaperWorker"
     }
@@ -45,6 +49,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var workerProgressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContentView(R.layout.activity_main)
@@ -57,9 +62,9 @@ class MainActivity : AppCompatActivity() {
         workerProgressBar = findViewById(R.id.worker_progress_bar)
 
         setupButtonsClickListeners()
-        // Przy starcie sprawdzamy, czy uprawnienie jest JUŻ nadane (bez uruchamiania usługi)
-        checkLocationPermissions(false) // Sprawdzi stan i nic nie uruchomi jeśli są nadane
-        observeWorkerState()
+        // Przy starcie sprawdzamy, czy uprawnienia są JUŻ nadane (bez uruchamiania usługi)
+        // checkLocationPermissions(false) // Można usunąć lub zostawić, jeśli chcesz sprawdzić stan od razu
+        observeWorkerState() // Obserwator i tak pokaże aktualny stan workera
     }
 
     private fun setupButtonsClickListeners() {
@@ -117,7 +122,13 @@ class MainActivity : AppCompatActivity() {
                         if(currentState == WorkInfo.State.FAILED){
                             if (progress == -1) { // Możemy użyć -1 jako kodu błędu
                                 // --- ZMIANA: Teksty po angielsku ---
-                                workerStatusText = "Service Status: Error (e.g., location, API)"
+                                // Sprawdźmy, czy w workData jest wiadomość o błędzie
+                                val errorMessage = workInfo.outputData.getString("error_message")
+                                workerStatusText = if (!errorMessage.isNullOrEmpty()) {
+                                    "Service Status: Error ($errorMessage)"
+                                } else {
+                                    "Service Status: Error (e.g., location, API)"
+                                }
                                 // --- Koniec ZMIANY ---
                             }
                             // else: workerStatusText pozostaje domyślnym dla FAILED (Failed (will retry))
@@ -157,170 +168,271 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // === GŁÓWNA FUNKCJA SPRAWDZAJĄCA ===
     private fun startWallpaperServiceWithChecks() {
         if (isInternetAvailable()) {
-            // Sprawdź uprawnienia i jeśli są ok, uruchom usługę
-            // Jeśli nie są ok, funkcja checkLocationPermissions pokaże dialog
+            // Rozpocznij proces sprawdzania uprawnień
             checkLocationPermissions(true)
         } else {
             Toast.makeText(this, "Brak połączenia z internetem", Toast.LENGTH_LONG).show()
         }
     }
 
-    // === ZMODYFIKOWANA FUNKCJA ===
-    // Sprawdza uprawnienia. Jeśli nie ma, POKAZUJE DIALOG Z WYJAŚNIENIEM przed prośbą systemową.
+    // === ZMODYFIKOWANA FUNKCJA SPRAWDZANIA UPRAWNIEŃ ===
     private fun checkLocationPermissions(startServiceOnGrant: Boolean) {
-        when {
-            // Uprawnienie już jest nadane
-            areLocationPermissionsGranted() -> {
-                if (startServiceOnGrant) {
-                    startWallpaperService() // Uruchom usługę, jeśli to było celem
+        // 1. Sprawdź uprawnienie pierwszoplanowe (COARSE)
+        if (isCoarseLocationGranted()) {
+            Log.d(TAG, "ACCESS_COARSE_LOCATION already granted.")
+            // 2. Jeśli COARSE jest, sprawdź uprawnienie TŁA (tylko na Android 10+)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                if (isBackgroundLocationGranted()) {
+                    Log.d(TAG, "ACCESS_BACKGROUND_LOCATION already granted.")
+                    // Wszystkie potrzebne uprawnienia są, można startować
+                    if (startServiceOnGrant) {
+                        startWallpaperService()
+                    }
                 } else {
-                    Log.d(TAG, "Approximate location permission already granted.")
+                    // COARSE jest, ale BACKGROUND brakuje (na Android 10+)
+                    Log.d(TAG, "ACCESS_BACKGROUND_LOCATION needs to be requested.")
+                    // Pokaż wyjaśnienie i poproś o BACKGROUND
+                    showLocationDisclosureDialog(isRequestingBackground = true)
+                }
+            } else {
+                // Na Androidzie < 10, COARSE wystarcza
+                Log.d(TAG, "Running on Android < Q, BACKGROUND location permission not required.")
+                if (startServiceOnGrant) {
+                    startWallpaperService()
                 }
             }
-            // Uprawnienie NIE jest nadane - POKAŻ DIALOG Z WYJAŚNIENIEM
-            else -> {
-                // Wywołaj funkcję pokazującą dialog ZANIM poprosisz o uprawnienie
-                showBackgroundLocationDisclosureDialog()
-            }
+        } else {
+            // COARSE brakuje - poproś najpierw o nie
+            Log.d(TAG, "ACCESS_COARSE_LOCATION needs to be requested.")
+            // Pokaż wyjaśnienie i poproś o COARSE
+            showLocationDisclosureDialog(isRequestingBackground = false)
         }
     }
 
-    // === NOWA FUNKCJA: Pokazuje dialog wyjaśniający potrzebę lokalizacji w tle ===
-    private fun showBackgroundLocationDisclosureDialog() {
+    // === NOWA, UNIWERSALNA FUNKCJA POKAZUJĄCA DIALOG ===
+    // Decyduje, o które uprawnienie poprosić po zamknięciu dialogu
+    private fun showLocationDisclosureDialog(isRequestingBackground: Boolean) {
+        val title: String
+        val message: String
+        val positiveButtonText = "Rozumiem i kontynuuj"
+        val negativeButtonText = "Anuluj"
+
+        if (isRequestingBackground) {
+            title = "Wymagana lokalizacja w tle"
+            message = "Aplikacja Weatpaper potrzebuje dostępu do Twojej lokalizacji **w tle**.\n\n" +
+                    "Pozwoli to na automatyczne aktualizowanie tapety zgodnie z pogodą w Twojej okolicy, nawet gdy aplikacja nie jest aktywna.\n\n" +
+                    "Bez tej zgody tapeta będzie aktualizowana tylko, gdy aplikacja będzie otwarta." // Zaktualizowane wyjaśnienie
+        } else {
+            title = "Wymagana lokalizacja"
+            message = "Aplikacja Weatpaper potrzebuje dostępu do Twojej **przybliżonej lokalizacji**.\n\n" +
+                    "Jest to potrzebne do pobrania danych pogodowych dla Twojej okolicy i ustawienia odpowiedniej tapety.\n\n" +
+                    "Najpierw wymagana jest zgoda na lokalizację, gdy aplikacja jest używana."
+        }
+
         AlertDialog.Builder(this)
-            .setTitle("Wymagana lokalizacja w tle") // Tytuł okna
-            .setMessage(
-                "Aplikacja Weatpaper potrzebuje dostępu do Twojej lokalizacji w tle.\n\n" +
-                        "Pozwoli to na automatyczne aktualizowanie tapety zgodnie z aktualną pogodą w Twojej okolicy, nawet gdy aplikacja nie jest aktywna lub ekran jest wyłączony.\n\n" +
-                        "Twoja przybliżona lokalizacja będzie okresowo sprawdzana w tym celu."
-            ) // Wyjaśnienie
-            .setPositiveButton("Rozumiem i kontynuuj") { dialog, _ ->
-                // Użytkownik zaakceptował wyjaśnienie, teraz poproś o uprawnienie systemowe
-                requestLocationPermissions()
+            .setTitle(title)
+            .setMessage(message)
+            .setPositiveButton(positiveButtonText) { dialog, _ ->
                 dialog.dismiss()
+                // Po akceptacji wyjaśnienia, poproś o odpowiednie uprawnienie
+                if (isRequestingBackground) {
+                    requestBackgroundLocationPermission()
+                } else {
+                    requestCoarseLocationPermission()
+                }
             }
-            .setNegativeButton("Anuluj") { dialog, _ ->
-                // Użytkownik anulował, nie proś o uprawnienie
-                Toast.makeText(this, "Bez zgody na lokalizację, automatyczna aktualizacja tapety nie będzie możliwa.", Toast.LENGTH_LONG).show()
+            .setNegativeButton(negativeButtonText) { dialog, _ ->
                 dialog.dismiss()
+                val toastMessage = if (isRequestingBackground) {
+                    "Bez zgody na lokalizację w tle, automatyczna aktualizacja tapety może nie działać poprawnie."
+                } else {
+                    "Bez zgody na lokalizację, aplikacja nie może pobrać pogody i ustawić tapety."
+                }
+                Toast.makeText(this, toastMessage, Toast.LENGTH_LONG).show()
             }
-            .setCancelable(false) // Opcjonalnie: uniemożliwia zamknięcie dialogu przez kliknięcie poza nim
+            .setCancelable(false)
             .show()
     }
 
 
-    // === Funkcja prosi system o nadanie uprawnień (bez zmian) ===
-    private fun requestLocationPermissions() {
+    // === FUNKCJE POMOCNICZE DO SPRAWDZANIA I ŻĄDANIA UPRAWNIEŃ ===
+
+    private fun isCoarseLocationGranted(): Boolean {
+        return ContextCompat.checkSelfPermission(
+            this, Manifest.permission.ACCESS_COARSE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun isBackgroundLocationGranted(): Boolean {
+        // Sprawdzaj tylko na Q+
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            ContextCompat.checkSelfPermission(
+                this, Manifest.permission.ACCESS_BACKGROUND_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        } else {
+            true // Na starszych wersjach nie ma tego uprawnienia, traktujemy jak przyznane
+        }
+    }
+
+    private fun requestCoarseLocationPermission() {
         ActivityCompat.requestPermissions(
             this,
             arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
-            LOCATION_PERMISSION_REQUEST_CODE
+            LOCATION_PERMISSION_REQUEST_CODE // Używamy kodu dla COARSE
         )
         Log.d(TAG, "Requesting COARSE location permission.")
     }
 
-    // Sprawdza, czy uprawnienie lokalizacji jest nadane (bez zmian)
-    private fun areLocationPermissionsGranted(): Boolean {
-        val granted = ContextCompat.checkSelfPermission(
-            this,
-            Manifest.permission.ACCESS_COARSE_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED
-        Log.d(TAG, "Checking COARSE location permission: $granted")
-        return granted
-    }
-
-    // Uruchamia WorkManagera (bez zmian)
-    private fun startWallpaperService() {
-        scheduleWallpaperWorker()
-        Log.i(TAG,"Wallpaper service start requested (scheduling periodic work)")
-    }
-
-    // Planuje zadanie WorkManagera (bez zmian)
-    private fun scheduleWallpaperWorker() {
-        val workRequest = PeriodicWorkRequestBuilder<WallpaperWorker>(
-            30, // Ustaw interwał (np. 3 godziny)
-            TimeUnit.MINUTES
-        )
-            .addTag("WallpaperWorkerTag")
-            .build()
-
-        try {
-            workManager.enqueueUniquePeriodicWork(
-                UNIQUE_WORK_NAME,
-                ExistingPeriodicWorkPolicy.REPLACE, // REPLACE: Anuluje poprzednie zadanie i tworzy nowe
-                workRequest
+    private fun requestBackgroundLocationPermission() {
+        // Upewnij się, że to Android 10+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_BACKGROUND_LOCATION),
+                BACKGROUND_LOCATION_PERMISSION_REQUEST_CODE // Używamy kodu dla BACKGROUND
             )
-            Log.d(TAG, "PeriodicWorkRequest enqueued with REPLACE policy for $UNIQUE_WORK_NAME")
-            Toast.makeText(this, "Usługa tapet została zaplanowana.", Toast.LENGTH_SHORT).show()
-            // Obserwator WorkManagera powinien automatycznie zaktualizować stan przycisków
-
-        } catch (e: IllegalStateException) {
-            // To może się zdarzyć, jeśli WorkManager nie jest gotowy (np. podczas szybkiego przełączania)
-            Log.e(TAG, "Failed to schedule Periodic WallpaperWorker due to IllegalStateException: ${e.message}")
-            Toast.makeText(this, "Błąd podczas planowania usługi (WorkManager): Spróbuj ponownie za chwilę.", Toast.LENGTH_LONG).show()
-        }
-        catch (e: Exception) {
-            Log.e(TAG, "Failed to schedule Periodic WallpaperWorker: ${e.message}")
-            Toast.makeText(this, "Błąd podczas planowania usługi: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
+            Log.d(TAG, "Requesting BACKGROUND location permission.")
         }
     }
 
-    // Zatrzymuje WorkManagera (bez zmian)
-    private fun stopWallpaperWorker() {
-        try {
-            workManager.cancelUniqueWork(UNIQUE_WORK_NAME)
-            Log.i(TAG,"Stopped unique work: $UNIQUE_WORK_NAME")
-            Toast.makeText(this, "Usługa tapet została zatrzymana.", Toast.LENGTH_SHORT).show()
-            // Obserwator WorkManagera powinien automatycznie zaktualizować stan przycisków
-        } catch (e: Exception) {
-            Log.e(TAG, "Failed to stop WallpaperWorker: ${e.message}")
-            Toast.makeText(this, "Błąd podczas zatrzymywania usługi: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
-        }
-    }
-
-    // Sprawdza dostęp do internetu (bez zmian)
-    private fun isInternetAvailable(): Boolean {
-        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val network = connectivityManager.activeNetwork ?: return false
-        val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
-        return activeNetwork.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-    }
-
-    // Obsługuje wynik prośby o uprawnienia (bez zmian)
+    // === ZAKTUALIZOWANA FUNKCJA OBSŁUGI WYNIKÓW ===
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
-            // Sprawdźmy, czy to na pewno odpowiedź na naszą prośbę (powinna zawierać COARSE)
-            if (permissions.contains(Manifest.permission.ACCESS_COARSE_LOCATION)) {
+        Log.d(TAG, "onRequestPermissionsResult: requestCode=$requestCode, permissions=${permissions.joinToString()}, grantResults=${grantResults.joinToString()}")
+
+        when (requestCode) {
+            LOCATION_PERMISSION_REQUEST_CODE -> {
+                // Odpowiedź na żądanie COARSE_LOCATION
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Log.i(TAG, "ACCESS_COARSE_LOCATION permission granted.")
-                    // Uprawnienie nadane po pokazaniu dialogu, teraz można uruchomić usługę
-                    startWallpaperService()
+                    // Sukces, teraz ponownie sprawdź stan (może trzeba poprosić o BACKGROUND)
+                    checkLocationPermissions(true) // Ponowne sprawdzenie zainicjuje prośbę o background lub start usługi
                 } else {
                     Log.w(TAG, "ACCESS_COARSE_LOCATION permission denied.")
-                    Toast.makeText(this, "Odmówiono uprawnień lokalizacji (przybliżonej).", Toast.LENGTH_SHORT).show()
-                    // Sprawdź, czy użytkownik zaznaczył "Nie pytaj ponownie"
-                    if (!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
-                        // Użytkownik zaznaczył "Nie pytaj ponownie" LUB odmówił na stałe w ustawieniach
-                        Toast.makeText(this, "Włącz uprawnienia lokalizacji (przybliżone) ręcznie w ustawieniach aplikacji, aby korzystać z tej funkcji.", Toast.LENGTH_LONG).show()
-                        // Opcjonalnie: Przenieś do ustawień aplikacji
-                        try {
-                            startActivity(Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
-                                data = Uri.fromParts("package", packageName, null)
-                            })
-                        } catch (e: Exception){
-                            Log.e(TAG, "Could not open app settings: ${e.message}")
-                            Toast.makeText(this, "Nie można otworzyć ustawień aplikacji.", Toast.LENGTH_SHORT).show()
-                        }
-                    }
+                    Toast.makeText(this, "Odmówiono zgody na lokalizację (przybliżoną). Funkcja niedostępna.", Toast.LENGTH_SHORT).show()
+                    handlePermissionDeniedPermanently(Manifest.permission.ACCESS_COARSE_LOCATION, "przybliżoną")
+                }
+            }
+            BACKGROUND_LOCATION_PERMISSION_REQUEST_CODE -> {
+                // Odpowiedź na żądanie BACKGROUND_LOCATION (tylko na Android 10+)
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.i(TAG, "ACCESS_BACKGROUND_LOCATION permission granted.")
+                    // Sukces, teraz można uruchomić usługę
+                    startWallpaperService()
+                } else {
+                    Log.w(TAG, "ACCESS_BACKGROUND_LOCATION permission denied.")
+                    Toast.makeText(this, "Odmówiono zgody na lokalizację w tle. Tapeta może nie aktualizować się automatycznie.", Toast.LENGTH_LONG).show()
+                    handlePermissionDeniedPermanently(Manifest.permission.ACCESS_BACKGROUND_LOCATION, "w tle")
                 }
             }
         }
+    }
+
+    // === Funkcja pomocnicza do obsługi "Nie pytaj ponownie" ===
+    private fun handlePermissionDeniedPermanently(permission: String, permissionNameFriendly: String) {
+        if (!ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
+            // Użytkownik zaznaczył "Nie pytaj ponownie" LUB polityka urządzenia blokuje
+            Log.w(TAG, "Permission '$permission' denied permanently or policy restricted.")
+            showSettingsRedirectDialog(permissionNameFriendly)
+        }
+    }
+
+    // === Dialog przekierowujący do ustawień ===
+    private fun showSettingsRedirectDialog(permissionNameFriendly: String) {
+        AlertDialog.Builder(this)
+            .setTitle("Wymagane uprawnienie")
+            .setMessage("Aby funkcja działała poprawnie, wymagana jest zgoda na lokalizację ($permissionNameFriendly). Została ona trwale odrzucona. Czy chcesz przejść do ustawień aplikacji, aby ją włączyć ręcznie?")
+            .setPositiveButton("Przejdź do ustawień") { dialog, _ ->
+                dialog.dismiss()
+                // Otwórz ustawienia aplikacji
+                try {
+                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+                        data = Uri.fromParts("package", packageName, null)
+                    }
+                    startActivity(intent)
+                } catch (e: Exception) {
+                    Log.e(TAG, "Could not open app settings: ${e.message}")
+                    Toast.makeText(this, "Nie można otworzyć ustawień aplikacji.", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton("Anuluj") { dialog, _ ->
+                dialog.dismiss()
+                Toast.makeText(this, "Bez wymaganych uprawnień funkcja nie będzie działać.", Toast.LENGTH_SHORT).show()
+            }
+            .show()
+    }
+
+
+    // === FUNKCJE ZWIĄZANE Z WORKEREM (bez zmian) ===
+
+    private fun startWallpaperService() {
+        scheduleWallpaperWorker()
+        Log.i(TAG,"Wallpaper service start requested (scheduling periodic work)")
+        // Toast.makeText(this, "Usługa tapet została zaplanowana.", Toast.LENGTH_SHORT).show() // Można przenieść niżej
+    }
+
+    private fun scheduleWallpaperWorker() {
+        val workRequest = PeriodicWorkRequestBuilder<WallpaperWorker>(
+            // 30, TimeUnit.MINUTES // Minimum to 15 minut dla PeriodicWorkRequest
+            30, TimeUnit.MINUTES // Przykładowo co godzinę
+        )
+            .addTag("WallpaperWorkerTag")
+            // Można dodać ograniczenia, np. wymagać połączenia z siecią
+            // .setConstraints(Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build())
+            .build()
+
+        try {
+            workManager.enqueueUniquePeriodicWork(
+                UNIQUE_WORK_NAME,
+                ExistingPeriodicWorkPolicy.REPLACE, // REPLACE: Anuluje poprzednie i tworzy nowe
+                workRequest
+            )
+            Log.d(TAG, "PeriodicWorkRequest enqueued with REPLACE policy for $UNIQUE_WORK_NAME")
+            Toast.makeText(this, "Automatyczna zmiana tapety została włączona.", Toast.LENGTH_SHORT).show() // Lepszy komunikat
+
+        } catch (e: IllegalStateException) {
+            Log.e(TAG, "Failed to schedule Periodic WallpaperWorker due to IllegalStateException: ${e.message}")
+            Toast.makeText(this, "Błąd podczas planowania usługi (WorkManager): Spróbuj ponownie za chwilę.", Toast.LENGTH_LONG).show()
+        }
+        catch (e: Exception) {
+            Log.e(TAG, "Failed to schedule Periodic WallpaperWorker: ${e.message}", e)
+            Toast.makeText(this, "Błąd podczas planowania usługi: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun stopWallpaperWorker() {
+        try {
+            workManager.cancelUniqueWork(UNIQUE_WORK_NAME)
+            Log.i(TAG,"Stopped unique work: $UNIQUE_WORK_NAME")
+            Toast.makeText(this, "Automatyczna zmiana tapety została wyłączona.", Toast.LENGTH_SHORT).show() // Lepszy komunikat
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to stop WallpaperWorker: ${e.message}", e)
+            Toast.makeText(this, "Błąd podczas zatrzymywania usługi: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun isInternetAvailable(): Boolean {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        // Dla nowszych API
+        val network = connectivityManager.activeNetwork ?: return false
+        val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
+        return activeNetwork.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+
+        // Starsze API (można pominąć jeśli minSdk jest >= 23)
+        /*
+        else {
+            @Suppress("DEPRECATION")
+            val networkInfo = connectivityManager.activeNetworkInfo ?: return false
+            @Suppress("DEPRECATION")
+            return networkInfo.isConnected
+        }
+        */
     }
 }

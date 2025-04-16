@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1035750998056",
+    "project_id": "weatpaper-cb631",
+    "storage_bucket": "weatpaper-cb631.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1035750998056:android:cfb66df788cbe92103751d",
+        "android_client_info": {
+          "package_name": "com.paul.weatpaper"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAEcfuxvJwuOux0yJ7P9eG7AWzJY4yceo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

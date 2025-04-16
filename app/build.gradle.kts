@@ -11,6 +11,9 @@ plugins {
 
     // Secrets Gradle Plugin
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    // === DODAJ/UPEWNIJ SIĘ ===
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -21,8 +24,8 @@ android {
         applicationId = "com.paul.weatpaper"
         minSdk = 24
         targetSdk = 34
-        versionCode = 5
-        versionName = "5.1"
+        versionCode = 10
+        versionName = "10.1"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         // Klucz API – ładowany z gradle property
@@ -87,4 +90,11 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
+
+    //firebase
+
+    implementation(platform("com.google.firebase:firebase-bom:32.8.1")) // Sprawdź najnowszą wersję BOM
+    implementation("com.google.firebase:firebase-crashlytics-ktx")
+    implementation("com.google.firebase:firebase-analytics-ktx")
+
 }
