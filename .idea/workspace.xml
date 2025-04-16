@@ -26,18 +26,15 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="16f7a6f8-1935-43b7-ae00-abbb285029b3" name="Changes" comment="po-zmianach">
-      <change afterPath="$PROJECT_DIR$/app/google-services.json" afterDir="false" />
+    <list default="true" id="16f7a6f8-1935-43b7-ae00-abbb285029b3" name="Changes" comment="po-zmianach-lokalizacja-w-tle">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/proguard-rules.pro" beforeDir="false" afterPath="$PROJECT_DIR$/app/proguard-rules.pro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/MyApp.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/MyApp.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/MyApplication.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/ui/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/ui/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/worker/WallpaperWorker.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/worker/WallpaperWorker.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +44,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=ZY22C6RHW4)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\pawel\.android\avd\Pixel_9_API_Baklava.avd)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -138,36 +135,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Android App.app.executor": "Run",
-    "BundleExportedModule": "Weatpaper.app",
-    "ExportBundle.BundlePathForWeatpaper.app": "C:\\Users\\pawel\\AndroidStudioProjects\\Weatpaper\\app",
-    "Gradle.Download Sources.executor": "Run",
-    "PROJECT_TRUSTED_KEY": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "ScreenshotViewer.SavePath": "C:/Users/pawel/Desktop",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "com.google.services.firebase.aqiPopupShown": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/pawel/Documents/my-release-key.jks",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2",
-    "settings.build.tools.auto.reload": "ALL",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
+    &quot;BundleExportedModule&quot;: &quot;Weatpaper.app&quot;,
+    &quot;ExportBundle.BundlePathForWeatpaper.app&quot;: &quot;C:\\Users\\pawel\\AndroidStudioProjects\\Weatpaper\\app&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;PROJECT_TRUSTED_KEY&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;ScreenshotViewer.SavePath&quot;: &quot;C:/Users/pawel/Desktop&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/pawel/Documents/my-release-key.jks&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.build.tools.auto.reload&quot;: &quot;ALL&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
   },
-  "keyToStringList": {
-    "ExportApk.BuildVariants": [
-      "release"
+  &quot;keyToStringList&quot;: {
+    &quot;ExportApk.BuildVariants&quot;: [
+      &quot;release&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\pawel\AndroidStudioProjects\Weatpaper\app" />
@@ -402,7 +399,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744744061098</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="po-zmianach-lokalizacja-w-tle">
+      <option name="closed" value="true" />
+      <created>1744781124139</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1744781124139</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -430,7 +435,8 @@
     <MESSAGE value="wprowadzenie-poprawki" />
     <MESSAGE value="przedzmaina" />
     <MESSAGE value="po-zmianach" />
-    <option name="LAST_COMMIT_MESSAGE" value="po-zmianach" />
+    <MESSAGE value="po-zmianach-lokalizacja-w-tle" />
+    <option name="LAST_COMMIT_MESSAGE" value="po-zmianach-lokalizacja-w-tle" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -447,12 +453,12 @@
       <map>
         <entry key="com.paul.weatpaper">
           <value>
-            <CheckInfo lastCheckTimestamp="1744743891962" />
+            <CheckInfo lastCheckTimestamp="1744833078916" />
           </value>
         </entry>
         <entry key="com.paul.weatpaper.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1744743891962" />
+            <CheckInfo lastCheckTimestamp="1744833078917" />
           </value>
         </entry>
       </map>
