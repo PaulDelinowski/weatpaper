@@ -20,8 +20,15 @@ data class WeatherResponse(
 data class WeatherInfo(
     // Główny opis pogody (np. "Clouds", "Rain", "Clear")
     @SerializedName("main")
-    val main: String? // Używamy String? dla bezpieczeństwa (nullable)
-    // Możesz tu dodać inne pola z obiektu `weather`, np. description, icon
+    val main: String?, // Używamy String? dla bezpieczeństwa (nullable)
+
+    // <<< TUTAJ DODAJ NOWE POLE >>>
+    // Szczegółowy opis pogody (np. "few clouds", "overcast clouds", "light rain")
+    @SerializedName("description")
+    val description: String?, // Używamy String? dla bezpieczeństwa (nullable)
+
+    // Możesz tu dodać inne pola z obiektu `weather`, np. icon
+    // @SerializedName("icon") val icon: String?
 )
 
 // Klasa dla obiektu `sys`

@@ -2,7 +2,7 @@ package com.paul.weatpaper.utils
 
 import android.app.WallpaperManager
 import android.content.Context
-import android.util.Log // Upewnij się, że Log jest zaimportowany
+import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.IOException
@@ -10,108 +10,103 @@ import java.io.IOException
 class WallpaperChanger(private val context: Context) {
 
     /**
-     * Zmienia tapetę na podstawie pogody i pory dnia.
-     * Używa nowej logiki czasowej:
-     * - sunrise: od wschodu przez 1h
-     * - sunset: od 1h przed zachodem do zachodu (UWAGA: w kodzie jest 2h przed zachodem)
-     * - day: pomiędzy końcem 'sunrise' a początkiem 'sunset'
-     * - night: od zachodu do wschodu
-     *
-     * Funkcja jest teraz 'suspend' dla lepszej integracji z CoroutineWorker.
+     * Zmienia tapetę na podstawie pogody (description) i pory dnia.
+     * Używa `description` do dokładniejszego mapowania.
+     * `mainCondition` może służyć jako fallback.
      */
-    suspend fun changeWallpaper(weatherCondition: String, sunrise: Long, sunset: Long) {
-        val currentTime = System.currentTimeMillis() / 1000 // Aktualny czas w sekundach
-
-        // Oblicz granice nowych okresów
-        val sunrise_period_end = sunrise + 3600      // Koniec okresu "sunrise" = 1 godzina po wschodzie
-        val sunset_period_start = sunset - 7200     // Początek okresu "sunset" = 2 godziny przed zachodem
-
-        // --- NOWA LOGIKA USTALANIA PORY DNIA ---
+    // === ZMIANA: Zaktualizowana sygnatura funkcji ===
+    suspend fun changeWallpaper(
+        weatherDescription: String, // <<< Główny warunek z API (np. "few clouds")
+        mainCondition: String?,     // <<< Ogólny warunek (np. "Clouds") - opcjonalny fallback
+        sunrise: Long,
+        sunset: Long
+    ) {
+        // ============================================
+        // --- Logika ustalania pory dnia (bez zmian) ---
+        val currentTime = System.currentTimeMillis() / 1000
+        val sunrise_period_end = sunrise + 3600
+        val sunset_period_start = sunset - 7200
         val partOfDay = when {
-            // Okres "Sunrise": Od wschodu do godziny po wschodzie
             currentTime >= sunrise && currentTime < sunrise_period_end -> "sunrise"
-
-            // Okres "Sunset": Od 2 godzin przed zachodem do momentu zachodu
             currentTime >= sunset_period_start && currentTime < sunset -> "sunset"
-
-            // Okres "Day": Pomiędzy końcem okresu "sunrise" a początkiem okresu "sunset"
             currentTime >= sunrise_period_end && currentTime < sunset_period_start -> "day"
-
-            // Okres "Night": Cała reszta (od zachodu do wschodu)
             else -> "night"
         }
-        // Logowanie dla weryfikacji obliczonej pory dnia
         Log.d("WallpaperChanger", "Current time: $currentTime, Sunrise: $sunrise, Sunset: $sunset, Calculated partOfDay: $partOfDay")
 
+        Log.d("WallpaperChanger", "Checking weather description before mapping: '$weatherDescription', main: '$mainCondition'")
 
-        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        // +++ DODANY LOG: Sprawdzenie wartości weatherCondition PRZED blokiem 'when' +++
-        Log.d("WallpaperChanger", "Checking weatherCondition before mapping: '$weatherCondition'")
-        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-        // --- Logika mapowania pogody na folder (Z POPRAWKĄ DLA "Clouds") ---
+        // --- ZMIANA: NOWA LOGIKA MAPOWANIA POGODY NA FOLDER (używa description) ---
         val weatherFolder = when {
-            // Chmury: Duże, całkowite LUB ogólny opis 'Clouds'
-            weatherCondition.equals("broken clouds", ignoreCase = true) ||
-                    weatherCondition.equals("overcast clouds", ignoreCase = true) ||
-                    weatherCondition.equals("Clouds", ignoreCase = true) -> "cloud" // <<< DODANO "Clouds"
+            // --- Czysto / Lekkie chmury ---
+            weatherDescription.equals("clear sky", ignoreCase = true) -> "clear"
+            weatherDescription.equals("few clouds", ignoreCase = true) -> "clear" // Lekkie chmury -> folder clear
+            weatherDescription.equals("scattered clouds", ignoreCase = true) -> "clear" // Rozproszone chmury -> folder clear
 
-            // Czysto: Czyste niebo lub lekkie/rozproszone chmury
-            weatherCondition.equals("clear sky", ignoreCase = true) ||
-                    weatherCondition.equals("few clouds", ignoreCase = true) ||
-                    weatherCondition.equals("scattered clouds", ignoreCase = true) -> "clear"
+            // --- Zachmurzenie ---
+            weatherDescription.equals("broken clouds", ignoreCase = true) -> "cloud" // Duże zachmurzenie -> folder cloud
+            weatherDescription.equals("overcast clouds", ignoreCase = true) -> "cloud" // Całkowite zachmurzenie -> folder cloud
+            mainCondition?.equals("Clouds", ignoreCase = true) == true &&
+                    !weatherDescription.contains("rain", ignoreCase = true) &&
+                    !weatherDescription.contains("snow", ignoreCase = true) -> "cloud"
 
-            // Deszcz: Bez zmian
-            weatherCondition.contains("rain", ignoreCase = true) ||
-                    weatherCondition.contains("drizzle", ignoreCase = true) -> "rain"
+            // --- Deszcz / Mżawka ---
+            weatherDescription.contains("rain", ignoreCase = true) -> "rain"
+            weatherDescription.contains("drizzle", ignoreCase = true) -> "rain"
+            mainCondition?.equals("Rain", ignoreCase = true) == true -> "rain"
+            mainCondition?.equals("Drizzle", ignoreCase = true) == true -> "rain"
 
-            // Domyślnie: Czysto (dla innych warunków np. mgła, śnieg, których nie obsługujemy jawnie)
-            else -> "clear"
+            // --- Burza ---
+            weatherDescription.contains("thunderstorm", ignoreCase = true) -> "rain"
+            mainCondition?.equals("Thunderstorm", ignoreCase = true) == true -> "rain"
+
+            // --- Śnieg ---
+            weatherDescription.contains("snow", ignoreCase = true) -> "clear" // Załóżmy clear na razie
+            mainCondition?.equals("Snow", ignoreCase = true) == true -> "clear"
+
+            // --- Mgła / Mętność itp. ---
+            weatherDescription.contains("mist", ignoreCase = true) ||
+                    weatherDescription.contains("smoke", ignoreCase = true) ||
+                    weatherDescription.contains("haze", ignoreCase = true) ||
+                    weatherDescription.contains("fog", ignoreCase = true) -> "clear"
+            mainCondition?.let { it == "Mist" || it == "Smoke" || it == "Haze" || it == "Fog" } == true -> "clear"
+
+            // --- Domyślnie: Czysto ---
+            else -> {
+                Log.w("WallpaperChanger", "Unhandled weather description: '$weatherDescription' (main: '$mainCondition'). Defaulting to 'clear'.")
+                "clear"
+            }
         }
-        // Logowanie zmapowanego folderu (bez zmian)
-        Log.d("WallpaperChanger", "Mapped weather condition '$weatherCondition' to folder '$weatherFolder'")
+        // =====================================================================
+        Log.d("WallpaperChanger", "Mapped weather description '$weatherDescription' to folder '$weatherFolder'")
 
-
-        // --- Ustalanie ścieżki i zmiana tapety (z usprawnioną obsługą korutyn) ---
+        // --- Ustalanie ścieżki i zmiana tapety (bez zmian) ---
         val folderPath = "$weatherFolder/$partOfDay"
         Log.d("WallpaperChanger", "Attempting to load wallpaper from assets path: $folderPath")
 
         try {
-            // Operacje wejścia/wyjścia (listowanie plików, otwieranie strumienia, ustawianie tapety)
-            // powinny być wykonane poza głównym wątkiem. Używamy withContext(Dispatchers.IO).
             withContext(Dispatchers.IO) {
                 val assetManager = context.assets
-                // assetManager.list może zwrócić null, jeśli ścieżka nie istnieje
                 val wallpapers = assetManager.list(folderPath) ?: emptyArray()
                 Log.d("WallpaperChanger", "Available wallpapers in '$folderPath': ${wallpapers.joinToString(", ")}")
 
                 if (wallpapers.isNotEmpty()) {
                     val randomWallpaper = wallpapers.random()
                     Log.d("WallpaperChanger", "Selected random wallpaper: $randomWallpaper")
-                    // Otwieranie strumienia i ustawianie tapety
                     assetManager.open("$folderPath/$randomWallpaper").use { inputStream ->
-                        // WallpaperManager.getInstance() można bezpiecznie wywołać tutaj
-                        // setStream jest operacją blokującą, dlatego jest w Dispatchers.IO
                         WallpaperManager.getInstance(context).setStream(inputStream)
-                        // Logujemy sukces
                         Log.i("WallpaperChanger", "Wallpaper successfully set from: $folderPath/$randomWallpaper")
                     }
                 } else {
-                    // Logujemy ostrzeżenie, jeśli folder jest pusty lub nie istnieje
                     Log.w("WallpaperChanger", "No wallpapers found in assets path: $folderPath")
-                    // Nie pokazujemy Toastu użytkownikowi z zadania w tle
                 }
-            } // Koniec withContext(Dispatchers.IO)
+            }
         } catch (e: IOException) {
-            // Logujemy błędy związane z operacjami na plikach/strumieniach
             Log.e("WallpaperChanger", "IOException while changing wallpaper from path '$folderPath'", e)
-            // Możesz rozważyć rzucenie wyjątku dalej, jeśli chcesz, aby worker zwrócił Result.failure()
             // throw e
         } catch (e: Exception) {
-            // Logujemy inne, nieoczekiwane błędy
             Log.e("WallpaperChanger", "Unexpected error while changing wallpaper: ${e.message}", e)
-            // throw e // Opcjonalnie
+            // throw e
         }
     } // Koniec funkcji changeWallpaper
 } // Koniec klasy WallpaperChanger

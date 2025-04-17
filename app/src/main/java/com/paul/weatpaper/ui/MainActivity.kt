@@ -288,7 +288,7 @@ class MainActivity : AppCompatActivity() {
     private fun scheduleWallpaperWorker() {
         // Zmień interwał zgodnie z potrzebami, minimum 15 minut
         val workRequest = PeriodicWorkRequestBuilder<WallpaperWorker>(
-            1, TimeUnit.HOURS // Przykład: 1 godzina
+            15, TimeUnit.MINUTES // Przykład: 15 minut
         )
             .addTag("WallpaperWorkerTag")
             // Możesz dodać ograniczenia, np. wymagać połączenia z siecią
