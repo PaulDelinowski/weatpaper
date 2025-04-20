@@ -24,8 +24,8 @@ android {
         applicationId = "com.paul.weatpaper"
         minSdk = 24
         targetSdk = 34
-        versionCode = 13
-        versionName = "13.1"
+        versionCode = 14
+        versionName = "14.1"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         // Klucz API – ładowany z gradle property

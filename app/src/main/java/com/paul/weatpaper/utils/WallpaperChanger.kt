@@ -24,7 +24,7 @@ class WallpaperChanger(private val context: Context) {
         // ============================================
         // --- Logika ustalania pory dnia (bez zmian) ---
         val currentTime = System.currentTimeMillis() / 1000
-        val sunrise_period_end = sunrise + 3600
+        val sunrise_period_end = sunrise + 10800
         val sunset_period_start = sunset - 7200
         val partOfDay = when {
             currentTime >= sunrise && currentTime < sunrise_period_end -> "sunrise"
@@ -44,7 +44,7 @@ class WallpaperChanger(private val context: Context) {
             weatherDescription.equals("scattered clouds", ignoreCase = true) -> "clear" // Rozproszone chmury -> folder clear
 
             // --- Zachmurzenie ---
-            weatherDescription.equals("broken clouds", ignoreCase = true) -> "cloud" // Duże zachmurzenie -> folder cloud
+            weatherDescription.equals("broken clouds", ignoreCase = true) -> "clear" // Duże zachmurzenie -> folder clear
             weatherDescription.equals("overcast clouds", ignoreCase = true) -> "cloud" // Całkowite zachmurzenie -> folder cloud
             mainCondition?.equals("Clouds", ignoreCase = true) == true &&
                     !weatherDescription.contains("rain", ignoreCase = true) &&
@@ -57,8 +57,8 @@ class WallpaperChanger(private val context: Context) {
             mainCondition?.equals("Drizzle", ignoreCase = true) == true -> "rain"
 
             // --- Burza ---
-            weatherDescription.contains("thunderstorm", ignoreCase = true) -> "rain"
-            mainCondition?.equals("Thunderstorm", ignoreCase = true) == true -> "rain"
+            weatherDescription.contains("thunderstorm", ignoreCase = true) -> "thunderstorm"
+            mainCondition?.equals("Thunderstorm", ignoreCase = true) == true -> "thunderstorm"
 
             // --- Śnieg ---
             weatherDescription.contains("snow", ignoreCase = true) -> "clear" // Załóżmy clear na razie
