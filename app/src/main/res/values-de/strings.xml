@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">Weatpaper</string>
     <string name="title_app">Weatpaper</string>
-    <string name="welcome_text">Dein Smartphone lebt!</string>
-    <string name="welcome_text_2">Dynamisch wechselndes Hintergrundbild je nach Wetter, Jahreszeit, Tageszeit und Standort.</string>
+    <string name="welcome_text">Frühlingsausgabe!</string>
+    <string name="welcome_text_2">Ein intelligentes Hintergrundbild, das sich automatisch an das Wetter, die Tageszeit und den Standort anpasst.</string>
     <string name="start_button_text">Start!</string>
+    <string name="update_text">Die Sommerausgabe ist ab dem 22. Juni zum Download verfügbar!</string>
     <string name="howwork_button_text">Wie funktioniert es?</string>
     <string name="how_it_works_title">Wie funktioniert es?</string>
     <string name="how_it_works_text">Die Anwendung ändert automatisch das Hintergrundbild auf Ihrem Smartphone je nach Wetter, Tages- und Jahreszeit.</string>

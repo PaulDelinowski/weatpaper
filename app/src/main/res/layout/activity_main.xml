@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"  android:id="@+id/main"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.paul.weatpaper.ui.MainActivity">
@@ -15,150 +16,205 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/background" />
+            android:src="@drawable/background"
+            android:contentDescription="@string/background_image_desc" />
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:padding="25dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"  android:minHeight="540dp"             android:background="@drawable/rounded_corners"
-            android:orientation="vertical"
             android:layout_gravity="center"
-            android:gravity="center_vertical"    android:layout_margin="20dp"
-            android:paddingBottom="20dp"          android:paddingLeft="20dp"            android:paddingRight="20dp">
+            android:layout_margin="20dp"
+            android:fillViewport="true"
+            android:scrollbars="vertical"
+            >
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/title_app"
-                android:layout_gravity="center"
-                android:textSize="36sp"
-                android:textColor="#FFFFFF"
-                android:fontFamily="@font/josefinsans_bold" />
+                android:background="@drawable/rounded_corners"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/welcome_text"
-                android:layout_gravity="center"
-                android:textSize="24sp"
-                android:textColor="#FFFFFF"
-                android:fontFamily="@font/josefinsans_regular" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_app"
+                    android:layout_gravity="center"
+                    android:textSize="36sp"
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/josefinsans_bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/welcome_text_2"
-                android:layout_gravity="center"
-                android:textSize="18sp"
-                android:textAlignment="center"
-                android:padding="25dp"
-                android:textColor="#FFFFFF"
-                android:fontFamily="@font/josefinsans_regular" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/welcome_text"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"
+                    android:textColor="#008000" android:fontFamily="@font/josefinsans_bold" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:background="@drawable/button_background"
-                android:id="@+id/start_button"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="5dp"
-                android:text="@string/start_button_text"
-                android:textColor="@color/button_text_color"
-                android:fontFamily="@font/josefinsans_bold"
-                android:textSize="12sp"
-                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/welcome_text_2"
+                    android:layout_gravity="center"
+                    android:textSize="18sp"
+                    android:textAlignment="center"
+                    android:padding="10dp" android:textColor="#FFFFFF"
+                    android:fontFamily="@font/josefinsans_regular" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/stop_button"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="5dp"
-                android:background="@drawable/button_info_color"
-                android:fontFamily="@font/josefinsans_bold"
-                android:text="@string/stop_button_text"
-                android:textColor="@color/button_text_color"
-                android:textSize="12sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/update_text"
+                    android:layout_gravity="center"
+                    android:textSize="18sp"
+                    android:textAlignment="center"
+                    android:padding="10dp" android:textColor="#5CE65C" android:fontFamily="@font/josefinsans_regular" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:background="@drawable/button_info_color"
-                android:id="@+id/howitwork_button"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="5dp"
-                android:text="@string/howwork_button_text"
-                android:textColor="@color/button_text_color"
-                android:fontFamily="@font/josefinsans_bold"
-                android:textSize="12sp"
-                />
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:id="@+id/start_button"
+                    android:layout_width="170dp"
+                    app:backgroundTint="@color/button_start_color" app:cornerRadius="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:text="@string/start_button_text"
+                    android:textColor="@color/button_text_color"
+                    android:fontFamily="@font/josefinsans_bold"
+                    android:textSize="12sp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="@android:color/white"
+                    />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/info_button"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="5dp"
-                android:background="@drawable/button_info_color"
-                android:fontFamily="@font/josefinsans_bold"
-                android:text="@string/info_button_text"
-                android:textColor="@color/button_text_color"
-                android:textSize="12sp" />
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:id="@+id/stop_button"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/josefinsans_bold"
+                    android:text="@string/stop_button_text"
+                    android:textColor="@color/button_text_color"
+                    app:cornerRadius="20dp"
+                    android:textSize="12sp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    app:backgroundTint="@color/button_background_color"
+                    />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_website"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="5dp"
-                android:background="@drawable/button_info_color"
-                android:fontFamily="@font/josefinsans_bold"
-                android:text="@string/add_image"
-                android:textColor="@color/button_text_color"
-                android:textSize="12sp" />
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:id="@+id/howitwork_button"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:text="@string/howwork_button_text"
+                    android:textColor="@color/button_text_color"
+                    android:fontFamily="@font/josefinsans_bold"
+                    app:cornerRadius="20dp"
+                    android:textSize="12sp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    app:backgroundTint="@color/button_background_color"
+                    />
 
-            <TextView
-                android:id="@+id/worker_status_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="16dp"       android:fontFamily="@font/josefinsans_regular"
-                android:text="Stan usługi: Nieznany"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp" />
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:id="@+id/info_button"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/josefinsans_bold"
+                    android:text="@string/info_button_text"
+                    android:textColor="@color/button_text_color"
+                    app:cornerRadius="20dp"
+                    android:textSize="12sp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    app:backgroundTint="@color/button_background_color"
+                    />
 
-            <ProgressBar
-                android:id="@+id/worker_progress_bar"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"     android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="8dp"        android:max="100"
-                android:progress="0"
-                android:visibility="gone"             android:layout_marginStart="24dp"     android:layout_marginEnd="24dp" />
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:id="@+id/button_website"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/josefinsans_bold"
+                    android:text="@string/add_image"
+                    android:textColor="@color/button_text_color"
+                    app:cornerRadius="20dp"
+                    android:textSize="12sp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    app:backgroundTint="@color/button_background_color"
+                    />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/contact_text"
-                android:layout_gravity="center"
-                android:textSize="10sp"
-                android:textAlignment="center"
-                android:layout_marginTop="20dp"    android:paddingLeft="25dp"        android:paddingRight="25dp"
-                android:textColor="#FFFFFF"
-                android:lineSpacingExtra="8dp"
-                android:fontFamily="@font/josefinsans_regular" />
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:id="@+id/button_updates" android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/josefinsans_bold"
+                    android:text="@string/button_updates" android:textColor="@color/button_text_color"
+                    app:cornerRadius="20dp"
+                    android:textSize="12sp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    app:backgroundTint="@color/button_background_color" />
+                <TextView
+                    android:id="@+id/worker_status_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/josefinsans_regular"
+                    android:text="Stan usługi: Nieznany"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
 
-        </LinearLayout>
+                <ProgressBar
+                    android:id="@+id/worker_progress_bar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:max="100"
+                    android:progress="0"
+                    android:visibility="gone"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/contact_text"
+                    android:layout_gravity="center"
+                    android:textSize="10sp"
+                    android:textAlignment="center"
+                    android:layout_marginTop="20dp"
+                    android:paddingLeft="25dp"
+                    android:paddingRight="25dp"
+                    android:textColor="#FFFFFF"
+                    android:lineSpacingExtra="8dp"
+                    android:fontFamily="@font/josefinsans_regular" />
+
+            </LinearLayout>
+        </ScrollView>
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

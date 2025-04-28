@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/how_it_works_layout"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/how_it_works_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.paul.weatpaper.ui.HowItWorksActivity">
@@ -14,8 +14,7 @@
             android:id="@+id/backgroundImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:contentDescription="background image"
-            android:scaleType="centerCrop"
+            android:contentDescription="@string/background_image_desc" android:scaleType="centerCrop"
             android:src="@drawable/background" />
 
         <LinearLayout
@@ -25,11 +24,12 @@
             android:orientation="vertical"
             android:layout_gravity="center"
             android:gravity="center_vertical"
-            android:layout_margin="20dp">
+            android:layout_margin="20dp"
+            android:paddingTop="20dp"    android:paddingBottom="20dp" android:paddingLeft="20dp"   android:paddingRight="20dp"  >
 
             <TextView
                 android:layout_width="wrap_content"
-                android:padding="25dp"
+                android:padding="10dp"
                 android:layout_height="wrap_content"
                 android:text="@string/how_it_works_title"
                 android:layout_gravity="center"
@@ -47,6 +47,7 @@
                 android:textColor="#FFFFFF"
                 android:textAlignment="center"
                 android:fontFamily="@font/josefinsans_regular" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:padding="25dp"
@@ -58,17 +59,17 @@
                 android:textColor="#FFFFFF"
                 android:fontFamily="@font/josefinsans_regular" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_back"
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button" android:id="@+id/button_back"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="25dp"
-                android:background="@drawable/button_background"
-                android:fontFamily="@font/josefinsans_bold"
+                app:backgroundTint="@color/button_background_color" android:fontFamily="@font/josefinsans_bold"
                 android:text="@string/back_button_text"
                 android:textColor="@color/button_text_color"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                app:cornerRadius="20dp"          android:paddingTop="16dp"        android:paddingBottom="16dp"       />
 
         </LinearLayout>
 

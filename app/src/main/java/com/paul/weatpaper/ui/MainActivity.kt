@@ -70,8 +70,30 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.button_website).setOnClickListener { openWebsite() }
         startButton.setOnClickListener { startWallpaperServiceWithChecks() }
         stopButton.setOnClickListener { stopWallpaperWorker() }
-    }
 
+        // <<< TUTAJ DODAJ OBSŁUGĘ NOWEGO PRZYCISKU >>>
+        findViewById<Button>(R.id.button_updates).setOnClickListener {
+            // Sprawdź język urządzenia
+            val currentLanguage = Locale.getDefault().language
+            val url = if (currentLanguage == "pl") {
+                "https://weatpaper.pl/news" // URL dla języka polskiego
+            } else {
+                "https://weatpaper.com/news" // Domyślny URL (angielski)
+            }
+
+            // Spróbuj otworzyć URL w przeglądarce
+            try {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                startActivity(intent)
+                Log.d(TAG, "Opening URL for updates: $url") // Opcjonalny log
+            } catch (e: Exception) {
+                Log.e(TAG, "Failed to open updates URL '$url': ${e.message}") // Opcjonalny log błędu
+                // Poinformuj użytkownika o problemie, jeśli chcesz
+                Toast.makeText(this, "Nie można otworzyć strony z aktualnościami.", Toast.LENGTH_SHORT).show()
+            }
+        }
+        // <<< KONIEC DODANEJ OBSŁUGI >>>
+    }
     // Funkcja observeWorkerState pozostaje bez zmian
     private fun observeWorkerState() {
         workManager.getWorkInfosForUniqueWorkLiveData(UNIQUE_WORK_NAME)
