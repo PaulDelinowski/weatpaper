@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Weatpaper</string>
     <string name="title_app">Weatpaper</string>
-    <string name="welcome_text">Your smartphone is alive!</string>
-    <string name="welcome_text_2">Dynamically changing wallpaper depending on the weather, season, time of day and location.</string>
+    <string name="welcome_text">Springtime Edition!</string>
+    <string name="welcome_text_2">A smart wallpaper that automatically adapts to the weather, time of day, and location.</string>
+    <string name="update_text">Summer Update will be available on June 22nd! Remember to update!</string>
     <string name="start_button_text">Start!</string>
     <string name="howwork_button_text">How it\'s working?</string>
     <string name="how_it_works_title">How it\'s working?</string>
@@ -17,5 +18,7 @@
     <string name="info_text_4">After clicking the start button, you can minimize the application, but remember not to close it!</string>
     <string name="add_image">Privacy policy</string>
     <string name="stop_button_text">Stop App!</string>
-
+    <string name="background_image_desc">Tło aplikacji</string>
+    <string name="button_updates">What\'s new?</string>
+    button_updates
 </resources>

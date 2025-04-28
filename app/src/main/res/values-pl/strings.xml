@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Weatpaper</string>
     <string name="title_app">Weatpaper</string>
-    <string name="welcome_text">Twój smartfon żyje!</string>
-    <string name="welcome_text_2">Dynamicznie zmieniająca się tapeta w zależności od pogody, pory roku, pory dnia oraz lokalizacji.</string>
+    <string name="welcome_text">Edycja Wiosenna!</string>
+    <string name="welcome_text_2">Inteligentna tapeta, która automatycznie dopasowuje się do pogody, pory dnia i lokalizacji.</string>
+    <string name="update_text">Edycja letnia dostępna do pobrania od 22 czerwca!</string>
     <string name="start_button_text">Start!</string>
     <string name="howwork_button_text">Jak to działa?</string>
     <string name="how_it_works_title">Jak to działa?</string>
@@ -15,9 +16,8 @@
     <string name="info_text_2">Aby wszystko działało zgodnie z planem pamiętaj o:</string>
     <string name="info_text_3">Dostępie do interneu\nWłączonej lokalizaci\nuruchomionej aplikacji</string>
     <string name="info_text_4">Po kliknięciu przycisku start, aplikację możesz zminimalizować, jednak pamiętaj, aby jej nie zamykać!</string>
-
     <string name="add_image">Polityka prywatności</string>
     <string name="stop_button_text">Zatrzymaj!</string>
-
+    <string name="button_updates">Co nowego?</string>
 
 </resources>
