@@ -7,17 +7,33 @@
     <string name="start_button_text">Start!</string>
     <string name="howwork_button_text">Jak to działa?</string>
     <string name="how_it_works_title">Jak to działa?</string>
-    <string name="how_it_works_text">Aplikacja automatycznie będzie zmieniać tapetę w twoim smartfonie w zalożności od pogody, pory dnia oraz pory roku.</string>
+    <string name="how_it_works_text">Aplikacja automatycznie będzie zmieniać tapetę w twoim smartfonie i dopasowywać ją do warunków pogodowych oraz pory dnia.</string>
     <string name="how_it_works_text_2">Od teraz już wiesz, jaka jest obecnie pogoda na zewnątrz!</string>
     <string name="back_button_text">Powrót</string>
     <string name="contact_text">Developed by Paweł Delinowski\npaweldelinowski@outlook.com\nwww.weatpaper.com</string>
     <string name="info_button_text">Ważne info</string>
-    <string name="info_text_1">Aplikacja co około 30 minut będzie zmieniać tapetę w zależności od pory dnia, pogody, Twojej lokalizacji.</string>
-    <string name="info_text_2">Aby wszystko działało zgodnie z planem pamiętaj o:</string>
-    <string name="info_text_3">Dostępie do interneu\nWłączonej lokalizaci\nuruchomionej aplikacji</string>
-    <string name="info_text_4">Po kliknięciu przycisku start, aplikację możesz zminimalizować, jednak pamiętaj, aby jej nie zamykać!</string>
+    <string name="info_text_1">Co zrobić, jeśli aplikacja nie zmienia tapet?</string>
+    <string name="info_text_2">Sprawdź dostęp do internetu i włączoną lokalizację!</string>
+    <string name="info_text_3">Aplikacja działa w tle. System zarządzania energią może ją czasami zatrzymywać. Jeśli po jakimś czasie tapety przestają sie zmieniać, upewnij się, że Weatpaper ma pozwolenie na działanie w tle i wyłącz dla niej optymalizację baterii. Jeśli potrzebujesz pomocy, kliknij przycisk poniżej, aby zobaczyć instrukcję.</string>
+    <string name="info_text_4">Jeśli nadal masz problemy z działaniem aplikacji - napisz do mnie, postaram się pomóc!</string>
     <string name="add_image">Polityka prywatności</string>
     <string name="stop_button_text">Zatrzymaj!</string>
     <string name="button_updates">Co nowego?</string>
+    <string name="help_button_text">Instrukcja!</string>
 
+
+    <string name="wallpaper_service_enabled">Automatyczna zmiana tapety została włączona.</string>
+    <string name="wallpaper_service_disabled">Automatyczna zmiana tapety została wyłączona.</string>
+    <string name="no_internet_connection">Brak połączenia z internetem.</string>
+    <string name="location_permission_denied_toast">Odmówiono zgody na lokalizację (przybliżoną). Funkcja niedostępna.</string>
+    <string name="location_required_title">Wymagana lokalizacja</string>
+    <string name="location_required_message">Aplikacja Weatpaper potrzebuje dostępu do Twojej **przybliżonej lokalizacji**.\n\nJest to potrzebne do pobrania danych pogodowych dla Twojej okolicy i ustawienia odpowiedniej tapety.</string>
+    <string name="location_dialog_understand_continue">Rozumiem i kontynuuj</string>
+    <string name="location_dialog_cancel">Anuluj</string>
+    <string name="settings_redirect_title">Wymagane uprawnienie</string>
+    <string name="settings_redirect_message">Aby funkcja działała poprawnie, wymagana jest zgoda na lokalizację (%1$s). Została ona trwale odrzucona. Czy chcesz przejść do ustawień aplikacji, aby ją włączyć ręcznie?</string>
+    <string name="settings_redirect_positive">Przejdź do ustawień</string>
+    <string name="error_scheduling_work">Błąd podczas planowania usługi (WorkManager): Spróbuj ponownie za chwilę.</string>
+    <string name="error_stopping_work">Błąd podczas zatrzymywania usługi: %1$s</string>
+    <string name="cannot_open_page">Nie można otworzyć strony.</string>
 </resources>

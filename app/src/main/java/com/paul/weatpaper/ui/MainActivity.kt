@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 Log.e(TAG, "Failed to open updates URL '$url': ${e.message}") // Opcjonalny log błędu
                 // Poinformuj użytkownika o problemie, jeśli chcesz
-                Toast.makeText(this, "Nie można otworzyć strony z aktualnościami.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Cannot open news page.", Toast.LENGTH_SHORT).show()
             }
         }
         // <<< KONIEC DODANEJ OBSŁUGI >>>
@@ -169,7 +169,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
         } catch (e: Exception) {
             Log.e(TAG, "Failed to open website: ${e.message}")
-            Toast.makeText(this, "Nie można otworzyć strony", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "The page cannot be opened", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -178,7 +178,7 @@ class MainActivity : AppCompatActivity() {
         if (isInternetAvailable()) {
             checkLocationPermissions(true)
         } else {
-            Toast.makeText(this, "Brak połączenia z internetem", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "No internet connection", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -202,8 +202,8 @@ class MainActivity : AppCompatActivity() {
     // === UPROSZCZONA FUNKCJA POKAZUJĄCA DIALOG ===
     private fun showLocationDisclosureDialog() {
         val title = "Wymagana lokalizacja"
-        val message = "Aplikacja Weatpaper potrzebuje dostępu do Twojej **przybliżonej lokalizacji**.\n\n" +
-                "Jest to potrzebne do pobrania danych pogodowych dla Twojej okolicy i ustawienia odpowiedniej tapety." // Tylko wyjaśnienie dla COARSE
+        val message = "The Weatpaper app needs access to your approximate location\n\n" +
+                "This is needed to download weather data for your area and set the appropriate wallpaper." // Tylko wyjaśnienie dla COARSE
         val positiveButtonText = "Rozumiem i kontynuuj"
         val negativeButtonText = "Anuluj"
 
@@ -217,7 +217,7 @@ class MainActivity : AppCompatActivity() {
             }
             .setNegativeButton(negativeButtonText) { dialog, _ ->
                 dialog.dismiss()
-                Toast.makeText(this, "Bez zgody na lokalizację, aplikacja nie może pobrać pogody i ustawić tapety.", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Without location permission, the app cannot download weather and set wallpaper.", Toast.LENGTH_LONG).show()
             }
             .setCancelable(false)
             .show()
@@ -261,7 +261,7 @@ class MainActivity : AppCompatActivity() {
                 startWallpaperService()
             } else {
                 Log.w(TAG, "ACCESS_COARSE_LOCATION permission denied.")
-                Toast.makeText(this, "Odmówiono zgody na lokalizację (przybliżoną). Funkcja niedostępna.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Location permission (approximate) denied. Feature unavailable.", Toast.LENGTH_SHORT).show()
                 handlePermissionDeniedPermanently(Manifest.permission.ACCESS_COARSE_LOCATION, "przybliżoną")
             }
         }
@@ -279,9 +279,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun showSettingsRedirectDialog(permissionNameFriendly: String) {
         AlertDialog.Builder(this)
-            .setTitle("Wymagane uprawnienie")
-            .setMessage("Aby funkcja działała poprawnie, wymagana jest zgoda na lokalizację ($permissionNameFriendly). Została ona trwale odrzucona. Czy chcesz przejść do ustawień aplikacji, aby ją włączyć ręcznie?")
-            .setPositiveButton("Przejdź do ustawień") { dialog, _ ->
+            .setTitle("Permission required")
+            .setMessage("For this feature to work properly, location consent is required ($permissionNameFriendly). It has been permanently rejected. Would you like to go to the app settings to enable it manually?")
+            .setPositiveButton("Go to settings") { dialog, _ ->
                 dialog.dismiss()
                 try {
                     val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
@@ -290,12 +290,12 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 } catch (e: Exception) {
                     Log.e(TAG, "Could not open app settings: ${e.message}")
-                    Toast.makeText(this, "Nie można otworzyć ustawień aplikacji.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Cannot open application settings.", Toast.LENGTH_SHORT).show()
                 }
             }
             .setNegativeButton("Anuluj") { dialog, _ ->
                 dialog.dismiss()
-                Toast.makeText(this, "Bez wymaganych uprawnień funkcja nie będzie działać.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Without the required permissions, the feature will not work.", Toast.LENGTH_SHORT).show()
             }
             .show()
     }
@@ -310,7 +310,7 @@ class MainActivity : AppCompatActivity() {
     private fun scheduleWallpaperWorker() {
         // Zmień interwał zgodnie z potrzebami, minimum 15 minut
         val workRequest = PeriodicWorkRequestBuilder<WallpaperWorker>(
-            15, TimeUnit.MINUTES // Przykład: 15 minut
+            30, TimeUnit.MINUTES // Przykład: 15 minut
         )
             .addTag("WallpaperWorkerTag")
             // Możesz dodać ograniczenia, np. wymagać połączenia z siecią
@@ -324,15 +324,15 @@ class MainActivity : AppCompatActivity() {
                 workRequest
             )
             Log.d(TAG, "PeriodicWorkRequest enqueued with REPLACE policy for $UNIQUE_WORK_NAME")
-            Toast.makeText(this, "Automatyczna zmiana tapety została włączona.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.wallpaper_service_enabled), Toast.LENGTH_SHORT).show()
 
         } catch (e: IllegalStateException) {
             Log.e(TAG, "Failed to schedule Periodic WallpaperWorker due to IllegalStateException: ${e.message}")
-            Toast.makeText(this, "Błąd podczas planowania usługi (WorkManager): Spróbuj ponownie za chwilę.", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Error scheduling service (WorkManager): Please try again in a moment.", Toast.LENGTH_LONG).show()
         }
         catch (e: Exception) {
             Log.e(TAG, "Failed to schedule Periodic WallpaperWorker: ${e.message}", e)
-            Toast.makeText(this, "Błąd podczas planowania usługi: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Error while scheduling service: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -340,10 +340,10 @@ class MainActivity : AppCompatActivity() {
         try {
             workManager.cancelUniqueWork(UNIQUE_WORK_NAME)
             Log.i(TAG,"Stopped unique work: $UNIQUE_WORK_NAME")
-            Toast.makeText(this, "Automatyczna zmiana tapety została wyłączona.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Automatic wallpaper change has been disabled.", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
             Log.e(TAG, "Failed to stop WallpaperWorker: ${e.message}")
-            Toast.makeText(this, "Błąd podczas zatrzymywania usługi: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Error stopping service: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
         }
     }
 

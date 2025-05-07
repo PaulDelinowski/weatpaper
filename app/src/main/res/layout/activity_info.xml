@@ -57,18 +57,30 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/josefinsans_regular"
-                android:padding="25dp"
+                android:padding="15dp"
                 android:text="@string/info_text_3"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button" android:id="@+id/button_help"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                app:backgroundTint="@color/button_background_color" android:fontFamily="@font/josefinsans_bold"
+                android:text="@string/help_button_text"
+                android:textColor="@color/button_text_color"
+                android:textSize="12sp"
+                app:cornerRadius="20dp"          android:paddingTop="16dp"        android:paddingBottom="16dp"       />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/josefinsans_regular"
-                android:padding="25dp"
+                android:padding="15dp"
                 android:text="@string/info_text_4"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
@@ -80,7 +92,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="25dp"
+                android:layout_margin="15dp"
                 app:backgroundTint="@color/button_background_color" android:fontFamily="@font/josefinsans_bold"
                 android:text="@string/back_button_text"
                 android:textColor="@color/button_text_color"
