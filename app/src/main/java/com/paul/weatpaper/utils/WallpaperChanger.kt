@@ -44,7 +44,7 @@ class WallpaperChanger(private val context: Context) {
             weatherDescription.equals("scattered clouds", ignoreCase = true) -> "clear" // Rozproszone chmury -> folder clear
 
             // --- Zachmurzenie ---
-            weatherDescription.equals("broken clouds", ignoreCase = true) -> "clear" // Duże zachmurzenie -> folder clear
+            weatherDescription.equals("broken clouds", ignoreCase = true) -> "broken" // ZMIANA: Duże zachmurzenie -> folder broken
             weatherDescription.equals("overcast clouds", ignoreCase = true) -> "cloud" // Całkowite zachmurzenie -> folder cloud
             mainCondition?.equals("Clouds", ignoreCase = true) == true &&
                     !weatherDescription.contains("rain", ignoreCase = true) &&

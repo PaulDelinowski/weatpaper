@@ -26,16 +26,15 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="16f7a6f8-1935-43b7-ae00-abbb285029b3" name="Changes" comment="naprawiony-zmiany2">
+    <list default="true" id="16f7a6f8-1935-43b7-ae00-abbb285029b3" name="Changes" comment="naprawiony-zmiany-3">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/ui/InfoActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/ui/InfoActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/ui/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/ui/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_how_it_works.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_how_it_works.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/utils/WallpaperChanger.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/utils/WallpaperChanger.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_info.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_info.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-de/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-de/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values-pl/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-pl/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
@@ -121,6 +120,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/.gradle/caches/8.9/transforms/d4c95e95d7fb5d35dd986f2a8ccbbd31/transformed/preference-1.1.1/res/values/values.xml" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-34/android.jar!/android/Manifest.class" root0="SKIP_INSPECTION" />
     <setting file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-34/android/app/Activity.java" root0="SKIP_INSPECTION" />
   </component>
@@ -427,7 +427,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744919286951</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="naprawiony-zmiany-3">
+      <option name="closed" value="true" />
+      <created>1745869923814</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1745869923814</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -458,7 +466,8 @@
     <MESSAGE value="po-zmianach-lokalizacja-w-tle" />
     <MESSAGE value="naprawiony-zmiany" />
     <MESSAGE value="naprawiony-zmiany2" />
-    <option name="LAST_COMMIT_MESSAGE" value="naprawiony-zmiany2" />
+    <MESSAGE value="naprawiony-zmiany-3" />
+    <option name="LAST_COMMIT_MESSAGE" value="naprawiony-zmiany-3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -467,6 +476,14 @@
           <properties class="java.lang.IllegalAccessError" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-function">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/paul/weatpaper/ui/MainActivity.kt</url>
+          <line>338</line>
+          <properties class="com.paul.weatpaper.ui.MainActivity" method="stopWallpaperWorker">
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -475,12 +492,12 @@
       <map>
         <entry key="com.paul.weatpaper">
           <value>
-            <CheckInfo lastCheckTimestamp="1745868290581" />
+            <CheckInfo lastCheckTimestamp="1746356866478" />
           </value>
         </entry>
         <entry key="com.paul.weatpaper.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1745868290570" />
+            <CheckInfo lastCheckTimestamp="1746356866477" />
           </value>
         </entry>
       </map>

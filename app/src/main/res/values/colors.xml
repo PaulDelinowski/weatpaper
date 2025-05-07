@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="button_background_color">#008000</color>
+    <color name="button_background_color">#947940</color>
     <color name="button_start_color">#D9605C</color>
     <color name="button_pressed_color">#B75800
     </color> <!-- Ciemniejszy kolor dla efektu wciśnięcia -->
